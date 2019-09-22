@@ -48,6 +48,10 @@ class HomeViewModel(private val _bookmarkRepository: BookmarkRepository) : ViewM
         refreshList()
     }
 
+    fun refresh() = viewModelScope.launch {
+        refreshList()
+    }
+
     fun updateUrlText(s: String) {
         _urlText.value = s
     }
@@ -55,9 +59,5 @@ class HomeViewModel(private val _bookmarkRepository: BookmarkRepository) : ViewM
     private suspend fun refreshList() {
         _bookmarkList.value = _bookmarkRepository.findAll()
         _bookmarkCount.value = _bookmarkList.value?.size ?: 0
-    }
-
-    fun update(bookmark: Bookmark) = viewModelScope.launch {
-        _bookmarkRepository.update(bookmark)
     }
 }

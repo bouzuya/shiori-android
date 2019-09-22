@@ -9,14 +9,46 @@
             type="net.bouzuya.sample5.EditViewModel" />
     </data>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="300dp"
+        android:orientation="vertical"
+        android:padding="16dp"
         tools:context=".EditFragment">
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/editUrlEdit"
+            android:text="URL" />
+
+        <EditText
+            android:id="@+id/editUrlEdit"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@={viewModel.text}" />
-    </FrameLayout>
+            android:layout_height="wrap_content"
+            android:inputType="textUri"
+            android:text="@={viewModel.text}"
+            tools:ignore="Autofill" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end">
+
+            <Button
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> viewModel.cancel()}"
+                android:text="Cancel" />
+
+            <Button
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> viewModel.ok()}"
+                android:text="OK" />
+        </LinearLayout>
+    </LinearLayout>
 </layout>
