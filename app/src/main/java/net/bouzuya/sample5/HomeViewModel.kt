@@ -14,6 +14,9 @@ class HomeViewModel(private val _bookmarkRepository: BookmarkRepository) : ViewM
     private val _bookmarkCount = MutableLiveData<Int>()
     val bookmarkCount: LiveData<String> = Transformations.map(_bookmarkCount) { it.toString() }
 
+    private val _nameText = MutableLiveData<String>()
+    val nameText: LiveData<String> = _nameText
+
     private val _urlText = MutableLiveData<String>()
     val urlText: LiveData<String> = _urlText
 
@@ -37,12 +40,14 @@ class HomeViewModel(private val _bookmarkRepository: BookmarkRepository) : ViewM
     }
 
     fun insert() = viewModelScope.launch {
+        val name = _nameText.value ?: return@launch
         val url = _urlText.value ?: return@launch
         val createdAt = Instant.now().atZone(ZoneOffset.UTC).toOffsetDateTime()
             .format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
-        val bookmark = Bookmark(0, "", url, createdAt) // FIXME: name
+        val bookmark = Bookmark(0, name, url, createdAt)
         _bookmarkRepository.insert(bookmark)
 
+        _nameText.value = ""
         _urlText.value = ""
 
         refreshList()
@@ -50,6 +55,10 @@ class HomeViewModel(private val _bookmarkRepository: BookmarkRepository) : ViewM
 
     fun refresh() = viewModelScope.launch {
         refreshList()
+    }
+
+    fun updateNameText(s: String) {
+        _nameText.value = s
     }
 
     fun updateUrlText(s: String) {

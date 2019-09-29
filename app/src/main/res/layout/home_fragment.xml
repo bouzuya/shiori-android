@@ -38,6 +38,15 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="@string/home_name_text_label"
+            android:inputType="text"
+            android:text="@{viewModel.nameText}"
+            app:editTextAfterTextChanged="@{(s) -> viewModel.updateNameText(s)}"
+            tools:ignore="Autofill" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:hint="@string/home_url_text_label"
             android:inputType="text"
             android:text="@{viewModel.urlText}"

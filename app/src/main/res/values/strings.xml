@@ -6,4 +6,5 @@
     <string name="edit_url_label">URL</string>
     <string name="edit_cancel_label">Cancel</string>
     <string name="edit_ok_label">OK</string>
+    <string name="home_name_text_label">name</string>
 </resources>
