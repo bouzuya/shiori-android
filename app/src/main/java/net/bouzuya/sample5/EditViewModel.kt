@@ -16,12 +16,15 @@ class EditViewModel(
     private val _okEvent = MutableLiveData<Event<Unit>>()
     val okEvent: LiveData<Event<Unit>> = _okEvent
 
-    val text = MutableLiveData<String>()
+    val nameText = MutableLiveData<String>()
+
+    val urlText = MutableLiveData<String>()
 
     init {
         viewModelScope.launch {
             _bookmarkRepository.findById(_bookmarkId)?.let { bookmark ->
-                text.value = bookmark.url
+                nameText.value = bookmark.name
+                urlText.value = bookmark.url
             }
         }
     }
@@ -31,10 +34,11 @@ class EditViewModel(
     }
 
     fun ok() = viewModelScope.launch {
-        text.value?.also { url ->
-            _bookmarkRepository.findById(_bookmarkId)?.also { bookmark ->
-                // FIXME: name
-                _bookmarkRepository.update(Bookmark(bookmark.id, "", url, bookmark.createdAt))
+        nameText.value?.also { name ->
+            urlText.value?.also { url ->
+                _bookmarkRepository.findById(_bookmarkId)?.also { bookmark ->
+                    _bookmarkRepository.update(Bookmark(bookmark.id, name, url, bookmark.createdAt))
+                }
             }
         }
         _okEvent.value = Event(Unit)

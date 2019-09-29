@@ -20,7 +20,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:labelFor="@id/editNameEdit"
+            android:text="@string/edit_name_label" />
+
+        <EditText
+            android:id="@+id/editNameEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:text="@={viewModel.nameText}"
+            tools:ignore="Autofill" />
+
+        <TextView
             android:labelFor="@id/editUrlEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/edit_url_label" />
 
         <EditText
@@ -28,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textUri"
-            android:text="@={viewModel.text}"
+            android:text="@={viewModel.urlText}"
             tools:ignore="Autofill" />
 
         <LinearLayout

@@ -5,6 +5,7 @@
     <string name="home_delete_all_button_label">delete all</string>
     <string name="edit_url_label">URL</string>
     <string name="edit_cancel_label">Cancel</string>
+    <string name="edit_name_label">Name</string>
     <string name="edit_ok_label">OK</string>
     <string name="home_name_text_label">name</string>
 </resources>
