@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Bookmark::class], version = 1)
+@Database(entities = [Bookmark::class], version = 2)
 abstract class BookmarkDatabase : RoomDatabase() {
     abstract fun bookmarkDao(): BookmarkDao
 
@@ -19,7 +19,7 @@ abstract class BookmarkDatabase : RoomDatabase() {
                     context.applicationContext,
                     BookmarkDatabase::class.java,
                     "bookmark_database"
-                ).build().also { db ->
+                ).addMigrations(BookmarkDatabaseMigration1to2()).build().also { db ->
                     database = db
                 }
             }

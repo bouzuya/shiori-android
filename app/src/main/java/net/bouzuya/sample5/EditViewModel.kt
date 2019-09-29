@@ -33,7 +33,8 @@ class EditViewModel(
     fun ok() = viewModelScope.launch {
         text.value?.also { url ->
             _bookmarkRepository.findById(_bookmarkId)?.also { bookmark ->
-                _bookmarkRepository.update(Bookmark(bookmark.id, url, bookmark.createdAt))
+                // FIXME: name
+                _bookmarkRepository.update(Bookmark(bookmark.id, "", url, bookmark.createdAt))
             }
         }
         _okEvent.value = Event(Unit)

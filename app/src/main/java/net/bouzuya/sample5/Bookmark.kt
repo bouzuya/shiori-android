@@ -10,6 +10,9 @@ data class Bookmark(
     @ColumnInfo(name = "id")
     val id: Long,
 
+    @ColumnInfo(name = "name") // added in version 2
+    val name: String,
+
     @ColumnInfo(name = "url")
     val url: String,
 

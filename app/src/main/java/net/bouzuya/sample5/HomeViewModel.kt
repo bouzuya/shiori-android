@@ -37,10 +37,10 @@ class HomeViewModel(private val _bookmarkRepository: BookmarkRepository) : ViewM
     }
 
     fun insert() = viewModelScope.launch {
-        val name = _urlText.value ?: return@launch
+        val url = _urlText.value ?: return@launch
         val createdAt = Instant.now().atZone(ZoneOffset.UTC).toOffsetDateTime()
             .format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
-        val bookmark = Bookmark(0, name, createdAt)
+        val bookmark = Bookmark(0, "", url, createdAt) // FIXME: name
         _bookmarkRepository.insert(bookmark)
 
         _urlText.value = ""
