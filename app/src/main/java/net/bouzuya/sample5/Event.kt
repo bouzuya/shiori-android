@@ -5,7 +5,7 @@ class Event<T>(private val value: T) {
     val handled: Boolean
         get(): Boolean = _handled
 
-    fun getValueIfUnhandled(): T? {
+    fun handle(): T? {
         return if (_handled) null else {
             _handled = true
             value
