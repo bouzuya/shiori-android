@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -10,17 +10,33 @@
             type="net.bouzuya.sample5.TagViewModel" />
     </data>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".TagFragment">
 
         <androidx.recyclerview.widget.RecyclerView
-            app:tagList="@{viewModel.tagList}"
-            app:onClickTagListener="@{viewModel.edit}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:onClickTagListener="@{viewModel.edit}"
+            app:tagList="@{viewModel.tagList}"
             tools:itemCount="3"
             tools:listitem="@layout/tag_list_item" />
-    </FrameLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/tag_name_text_label"
+            android:inputType="text"
+            android:text="@{viewModel.nameText}"
+            app:editTextAfterTextChanged="@{(s) -> viewModel.updateNameText(s)}"
+            tools:ignore="Autofill" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.insert()}"
+            android:text="@string/tag_insert_button_label" />
+    </LinearLayout>
 </layout>
