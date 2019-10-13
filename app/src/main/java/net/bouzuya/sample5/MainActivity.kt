@@ -14,12 +14,10 @@ class MainActivity : AppCompatActivity() {
         object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                val database = BookmarkDatabase.getDatabase(applicationContext)
                 return MainViewModel(
-                    BookmarkRepository(
-                        BookmarkDatabase.getDatabase(
-                            applicationContext
-                        ).bookmarkDao()
-                    )
+                    BookmarkRepository(database.bookmarkDao()),
+                    TagRepository(database.tagDao())
                 ) as T
             }
         }
