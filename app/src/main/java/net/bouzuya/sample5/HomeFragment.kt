@@ -42,6 +42,9 @@ class HomeFragment : Fragment() {
             viewModel.editBookmarkEvent.observe(this, Observer { bookmark ->
                 findNavController().navigate(actionHomeFragmentToEditFragment(bookmark.id))
             })
+            viewModel.goToTagEvent.observe(this, EventObserver {
+                TODO("go to tag fragment")
+            })
         }.root
     }
 }
