@@ -9,6 +9,8 @@ import androidx.room.RoomDatabase
 abstract class BookmarkDatabase : RoomDatabase() {
     abstract fun bookmarkDao(): BookmarkDao
 
+    abstract fun tagDao(): TagDao
+
     companion object {
         @Volatile
         private var database: BookmarkDatabase? = null
