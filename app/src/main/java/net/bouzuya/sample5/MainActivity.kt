@@ -6,6 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import net.bouzuya.sample5.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -29,6 +32,14 @@ class MainActivity : AppCompatActivity() {
             .also { binding ->
                 binding.lifecycleOwner = this
                 binding.viewModel = viewModel
+
+                setupActionBarWithNavController(findNavController())
             }
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return findNavController().navigateUp()
+    }
+
+    private fun findNavController(): NavController = findNavController(R.id.nav_host_fragment)
 }
