@@ -11,6 +11,9 @@
         <action
             android:id="@+id/action_homeFragment_to_editFragment"
             app:destination="@id/editFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_tagFragment"
+            app:destination="@id/tagFragment" />
     </fragment>
 
     <dialog
@@ -21,4 +24,8 @@
             android:name="bookmarkId"
             app:argType="long" />
     </dialog>
+    <fragment
+        android:id="@+id/tagFragment"
+        android:name="net.bouzuya.sample5.TagFragment"
+        android:label="TagFragment" />
 </navigation>
