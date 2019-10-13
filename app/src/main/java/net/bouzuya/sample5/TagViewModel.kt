@@ -42,6 +42,10 @@ class TagViewModel(private val _tagRepository: TagRepository) : ViewModel() {
         refreshList()
     }
 
+    fun refresh() {
+        refreshList()
+    }
+
     private fun refreshList() {
         viewModelScope.launch {
             _tagList.value = _tagRepository.findAll()
