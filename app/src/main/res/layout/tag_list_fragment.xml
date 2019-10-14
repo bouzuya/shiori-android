@@ -7,14 +7,14 @@
 
         <variable
             name="viewModel"
-            type="net.bouzuya.sample5.TagViewModel" />
+            type="net.bouzuya.sample5.TagListViewModel" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".TagFragment">
+        tools:context=".TagListFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"

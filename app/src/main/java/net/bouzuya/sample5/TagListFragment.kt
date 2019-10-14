@@ -10,18 +10,17 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import net.bouzuya.sample5.TagFragmentDirections.Companion.actionTagFragmentToTagEditFragment
-import net.bouzuya.sample5.databinding.TagFragmentBinding
+import net.bouzuya.sample5.TagListFragmentDirections.Companion.actionTagListFragmentToTagEditFragment
+import net.bouzuya.sample5.databinding.TagListFragmentBinding
 
-
-class TagFragment : Fragment() {
+class TagListFragment : Fragment() {
     private val mainViewModel: MainViewModel by activityViewModels()
-    private val viewModel: TagViewModel by viewModels {
+    private val viewModel: TagListViewModel by viewModels {
         // FIXME
         object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return TagViewModel(mainViewModel.tagRepository) as T
+                return TagListViewModel(mainViewModel.tagRepository) as T
             }
         }
     }
@@ -30,7 +29,7 @@ class TagFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return TagFragmentBinding.inflate(inflater, container, false).also { binding ->
+        return TagListFragmentBinding.inflate(inflater, container, false).also { binding ->
             binding.lifecycleOwner = this
             binding.viewModel = viewModel
 
@@ -39,10 +38,10 @@ class TagFragment : Fragment() {
                     viewModel.refresh()
             })
             mainViewModel.fabClickEvent.observe(this, EventObserver {
-                findNavController().navigate(actionTagFragmentToTagEditFragment(0))
+                findNavController().navigate(actionTagListFragmentToTagEditFragment(0))
             })
             viewModel.editTagEvent.observe(this, EventObserver { tag ->
-                findNavController().navigate(actionTagFragmentToTagEditFragment(tag.id))
+                findNavController().navigate(actionTagListFragmentToTagEditFragment(tag.id))
             })
         }.root
     }

@@ -12,8 +12,8 @@
             android:id="@+id/action_homeFragment_to_editFragment"
             app:destination="@id/editFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_tagFragment"
-            app:destination="@id/tagFragment" />
+            android:id="@+id/action_homeFragment_to_tagListFragment"
+            app:destination="@id/tagListFragment" />
     </fragment>
 
     <dialog
@@ -26,11 +26,11 @@
     </dialog>
 
     <fragment
-        android:id="@+id/tagFragment"
-        android:name="net.bouzuya.sample5.TagFragment"
-        android:label="TagFragment">
+        android:id="@+id/tagListFragment"
+        android:name="net.bouzuya.sample5.TagListFragment"
+        android:label="TagListFragment">
         <action
-            android:id="@+id/action_tagFragment_to_tagEditFragment"
+            android:id="@+id/action_tagListFragment_to_tagEditFragment"
             app:destination="@id/tagEditFragment" />
     </fragment>
 

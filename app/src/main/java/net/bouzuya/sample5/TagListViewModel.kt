@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
-class TagViewModel(private val _tagRepository: TagRepository) : ViewModel() {
+class TagListViewModel(private val _tagRepository: TagRepository) : ViewModel() {
     private val _editTagEvent = MutableLiveData<Event<Tag>>()
     val editTagEvent: LiveData<Event<Tag>> = _editTagEvent
 
