@@ -9,7 +9,7 @@ import org.threeten.bp.Instant
 import org.threeten.bp.ZoneOffset
 import org.threeten.bp.format.DateTimeFormatter
 
-class EditViewModel(
+class BookmarkEditViewModel(
     private val _bookmarkRepository: BookmarkRepository,
     private val _bookmarkId: Long
 ) : ViewModel() {

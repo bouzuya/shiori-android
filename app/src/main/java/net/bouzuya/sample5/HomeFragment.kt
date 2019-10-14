@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import net.bouzuya.sample5.HomeFragmentDirections.Companion.actionHomeFragmentToEditFragment
+import net.bouzuya.sample5.HomeFragmentDirections.Companion.actionHomeFragmentToBookmarkEditFragment
 import net.bouzuya.sample5.HomeFragmentDirections.Companion.actionHomeFragmentToTagListFragment
 import net.bouzuya.sample5.databinding.HomeFragmentBinding
 
@@ -42,11 +42,11 @@ class HomeFragment : Fragment() {
             })
 
             mainViewModel.fabClickEvent.observe(this, EventObserver {
-                findNavController().navigate(actionHomeFragmentToEditFragment(0))
+                findNavController().navigate(actionHomeFragmentToBookmarkEditFragment(0))
             })
 
             viewModel.editBookmarkEvent.observe(this, Observer { bookmark ->
-                findNavController().navigate(actionHomeFragmentToEditFragment(bookmark.id))
+                findNavController().navigate(actionHomeFragmentToBookmarkEditFragment(bookmark.id))
             })
             viewModel.goToTagEvent.observe(this, EventObserver {
                 findNavController().navigate(actionHomeFragmentToTagListFragment())

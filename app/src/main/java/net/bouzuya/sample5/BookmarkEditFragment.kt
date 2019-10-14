@@ -10,18 +10,18 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
-import net.bouzuya.sample5.databinding.EditFragmentBinding
+import net.bouzuya.sample5.databinding.BookmarkEditFragmentBinding
 
 
-class EditFragment : DialogFragment() {
-    private val args: EditFragmentArgs by navArgs()
+class BookmarkEditFragment : DialogFragment() {
+    private val args: BookmarkEditFragmentArgs by navArgs()
     private val mainViewModel: MainViewModel by activityViewModels()
-    private val viewModel: EditViewModel by viewModels {
+    private val viewModel: BookmarkEditViewModel by viewModels {
         // FIXME
         object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return EditViewModel(
+                return BookmarkEditViewModel(
                     mainViewModel.bookmarkRepository,
                     args.bookmarkId
                 ) as T
@@ -33,7 +33,7 @@ class EditFragment : DialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return EditFragmentBinding.inflate(inflater, container, false).also { binding ->
+        return BookmarkEditFragmentBinding.inflate(inflater, container, false).also { binding ->
             binding.lifecycleOwner = this
             binding.viewModel = viewModel
 

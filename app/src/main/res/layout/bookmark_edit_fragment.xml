@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="net.bouzuya.sample5.EditViewModel" />
+            type="net.bouzuya.sample5.BookmarkEditViewModel" />
     </data>
 
     <LinearLayout
@@ -15,7 +15,7 @@
         android:minWidth="300dp"
         android:orientation="vertical"
         android:padding="16dp"
-        tools:context=".EditFragment">
+        tools:context=".BookmarkEditFragment">
 
         <TextView
             android:layout_width="wrap_content"

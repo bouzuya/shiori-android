@@ -9,16 +9,16 @@
         android:name="net.bouzuya.sample5.HomeFragment"
         android:label="Bookmark List">
         <action
-            android:id="@+id/action_homeFragment_to_editFragment"
-            app:destination="@id/editFragment" />
+            android:id="@+id/action_homeFragment_to_bookmarkEditFragment"
+            app:destination="@id/bookmarkEditFragment" />
         <action
             android:id="@+id/action_homeFragment_to_tagListFragment"
             app:destination="@id/tagListFragment" />
     </fragment>
 
     <dialog
-        android:id="@+id/editFragment"
-        android:name="net.bouzuya.sample5.EditFragment"
+        android:id="@+id/bookmarkEditFragment"
+        android:name="net.bouzuya.sample5.BookmarkEditFragment"
         android:label="Bookmark Edit">
         <argument
             android:name="bookmarkId"
