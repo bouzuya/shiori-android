@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="net.bouzuya.sample5.HomeFragment"
-        android:label="HomeFragment">
+        android:label="Bookmark List">
         <action
             android:id="@+id/action_homeFragment_to_editFragment"
             app:destination="@id/editFragment" />
@@ -19,7 +19,7 @@
     <dialog
         android:id="@+id/editFragment"
         android:name="net.bouzuya.sample5.EditFragment"
-        android:label="EditFragment">
+        android:label="Bookmark Edit">
         <argument
             android:name="bookmarkId"
             app:argType="long" />
@@ -28,7 +28,7 @@
     <fragment
         android:id="@+id/tagListFragment"
         android:name="net.bouzuya.sample5.TagListFragment"
-        android:label="TagListFragment">
+        android:label="Tag List">
         <action
             android:id="@+id/action_tagListFragment_to_tagEditFragment"
             app:destination="@id/tagEditFragment" />
@@ -37,7 +37,7 @@
     <dialog
         android:id="@+id/tagEditFragment"
         android:name="net.bouzuya.sample5.TagEditFragment"
-        android:label="TagEditFragment">
+        android:label="Tag Edit">
         <argument
             android:name="tagId"
             app:argType="long" />
