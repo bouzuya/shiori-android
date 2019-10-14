@@ -35,30 +35,6 @@
             tools:itemCount="3"
             tools:listitem="@layout/home_bookmark_list_item" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/home_name_text_label"
-            android:inputType="text"
-            android:text="@{viewModel.nameText}"
-            app:editTextAfterTextChanged="@{(s) -> viewModel.updateNameText(s)}"
-            tools:ignore="Autofill" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/home_url_text_label"
-            android:inputType="text"
-            android:text="@{viewModel.urlText}"
-            app:editTextAfterTextChanged="@{(s) -> viewModel.updateUrlText(s)}"
-            tools:ignore="Autofill" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> viewModel.insert()}"
-            android:text="@string/home_insert_button_label" />
-
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
