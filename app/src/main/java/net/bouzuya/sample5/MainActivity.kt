@@ -34,6 +34,10 @@ class MainActivity : AppCompatActivity() {
                 binding.viewModel = viewModel
 
                 setupActionBarWithNavController(findNavController())
+
+                viewModel.fabClickEvent.observe(this, EventObserver {
+                    TODO("open create dialog")
+                })
             }
     }
 
