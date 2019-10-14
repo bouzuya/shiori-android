@@ -40,6 +40,11 @@ class HomeFragment : Fragment() {
                 if (isOk)
                     viewModel.refresh()
             })
+
+            mainViewModel.fabClickEvent.observe(this, EventObserver {
+                findNavController().navigate(actionHomeFragmentToEditFragment(0))
+            })
+
             viewModel.editBookmarkEvent.observe(this, Observer { bookmark ->
                 findNavController().navigate(actionHomeFragmentToEditFragment(bookmark.id))
             })

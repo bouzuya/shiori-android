@@ -32,9 +32,9 @@
             tools:ignore="Autofill" />
 
         <TextView
-            android:labelFor="@id/editUrlEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:labelFor="@id/editUrlEdit"
             android:text="@string/edit_url_label" />
 
         <EditText
