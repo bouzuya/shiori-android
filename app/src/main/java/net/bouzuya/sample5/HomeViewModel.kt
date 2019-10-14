@@ -5,8 +5,8 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(private val _bookmarkRepository: BookmarkRepository) : ViewModel() {
 
-    private val _editBookmarkEvent = MutableLiveData<Bookmark>()
-    val editBookmarkEvent: LiveData<Bookmark> = _editBookmarkEvent
+    private val _editBookmarkEvent = MutableLiveData<Event<Bookmark>>()
+    val editBookmarkEvent: LiveData<Event<Bookmark>> = _editBookmarkEvent
 
     private val _goToTagEvent = MutableLiveData<Event<Unit>>()
     val goToTagEvent: LiveData<Event<Unit>> = _goToTagEvent
@@ -30,7 +30,7 @@ class HomeViewModel(private val _bookmarkRepository: BookmarkRepository) : ViewM
     }
 
     fun edit(bookmark: Bookmark) {
-        _editBookmarkEvent.value = bookmark
+        _editBookmarkEvent.value = Event(bookmark)
     }
 
     fun goToTag() {

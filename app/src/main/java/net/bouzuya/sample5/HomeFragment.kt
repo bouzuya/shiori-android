@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -45,7 +44,7 @@ class HomeFragment : Fragment() {
                 findNavController().navigate(actionHomeFragmentToBookmarkEditFragment(0))
             })
 
-            viewModel.editBookmarkEvent.observe(this, Observer { bookmark ->
+            viewModel.editBookmarkEvent.observe(this, EventObserver { bookmark ->
                 findNavController().navigate(actionHomeFragmentToBookmarkEditFragment(bookmark.id))
             })
             viewModel.goToTagEvent.observe(this, EventObserver {
