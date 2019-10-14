@@ -23,20 +23,5 @@
             app:tagList="@{viewModel.tagList}"
             tools:itemCount="3"
             tools:listitem="@layout/tag_list_item" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/tag_name_text_label"
-            android:inputType="text"
-            android:text="@{viewModel.nameText}"
-            app:editTextAfterTextChanged="@{(s) -> viewModel.updateNameText(s)}"
-            tools:ignore="Autofill" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> viewModel.insert()}"
-            android:text="@string/tag_insert_button_label" />
     </LinearLayout>
 </layout>
