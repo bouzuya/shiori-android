@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import net.bouzuya.sample5.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -33,7 +33,10 @@ class MainActivity : AppCompatActivity() {
                 binding.lifecycleOwner = this
                 binding.viewModel = viewModel
 
-                setupActionBarWithNavController(findNavController())
+                binding.toolbar.let { toolbar ->
+                    setSupportActionBar(toolbar)
+                    toolbar.setupWithNavController(findNavController())
+                }
             }
     }
 
