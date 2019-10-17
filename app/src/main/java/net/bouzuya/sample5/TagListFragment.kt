@@ -37,9 +37,11 @@ class TagListFragment : Fragment() {
                 if (isOk)
                     viewModel.refresh()
             })
-            mainViewModel.fabClickEvent.observe(this, EventObserver {
+
+            viewModel.createTagEvent.observe(this, EventObserver {
                 findNavController().navigate(actionTagListFragmentToTagEditFragment(0))
             })
+
             viewModel.editTagEvent.observe(this, EventObserver { tag ->
                 findNavController().navigate(actionTagListFragmentToTagEditFragment(tag.id))
             })

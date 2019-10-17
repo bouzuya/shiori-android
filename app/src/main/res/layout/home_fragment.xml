@@ -10,29 +10,43 @@
             type="net.bouzuya.sample5.HomeViewModel" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".HomeFragment">
+        android:layout_height="match_parent">
 
-        <Button
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> viewModel.deleteAll()}"
-            android:text="@string/home_delete_all_button_label" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".HomeFragment">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{viewModel.bookmarkCount}" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> viewModel.deleteAll()}"
+                android:text="@string/home_delete_all_button_label" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:bookmarkList="@{viewModel.bookmarkList}"
-            app:onClickBookmarkListener="@{viewModel.edit}"
-            tools:itemCount="3"
-            tools:listitem="@layout/home_bookmark_list_item" />
-    </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.bookmarkCount}" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:bookmarkList="@{viewModel.bookmarkList}"
+                app:onClickBookmarkListener="@{viewModel.edit}"
+                tools:itemCount="3"
+                tools:listitem="@layout/home_bookmark_list_item" />
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_margin="16dp"
+            android:onClick="@{() -> viewModel.create()}"
+            android:src="@drawable/ic_add_white_24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

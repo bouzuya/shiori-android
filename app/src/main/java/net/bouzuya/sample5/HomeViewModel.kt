@@ -14,6 +14,9 @@ class HomeViewModel(private val _bookmarkRepository: BookmarkRepository) : ViewM
     private val _bookmarkList = MutableLiveData<List<Bookmark>>()
     val bookmarkList: LiveData<List<Bookmark>> = _bookmarkList
 
+    private val _createBookmarkEvent = MutableLiveData<Event<Unit>>()
+    val createBookmarkEvent: LiveData<Event<Unit>> = _createBookmarkEvent
+
     init {
         viewModelScope.launch {
             refreshList()
@@ -28,6 +31,10 @@ class HomeViewModel(private val _bookmarkRepository: BookmarkRepository) : ViewM
 
     fun edit(bookmark: Bookmark) {
         _editBookmarkEvent.value = Event(bookmark)
+    }
+
+    fun create() {
+        _createBookmarkEvent.value = Event(Unit)
     }
 
     fun refresh() = viewModelScope.launch {

@@ -38,15 +38,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/toolbar"
                 app:navGraph="@navigation/nav_graph" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_margin="16dp"
-                android:onClick="@{() -> viewModel.clickFAB()}"
-                android:src="@drawable/ic_add_white_24dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.navigation.NavigationView
