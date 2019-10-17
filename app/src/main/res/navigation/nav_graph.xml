@@ -11,9 +11,6 @@
         <action
             android:id="@+id/action_homeFragment_to_bookmarkEditFragment"
             app:destination="@id/bookmarkEditFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_tagListFragment"
-            app:destination="@id/tagListFragment" />
     </fragment>
 
     <dialog

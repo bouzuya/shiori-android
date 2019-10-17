@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import net.bouzuya.sample5.databinding.ActivityMainBinding
 
@@ -35,7 +36,13 @@ class MainActivity : AppCompatActivity() {
 
                 binding.toolbar.let { toolbar ->
                     setSupportActionBar(toolbar)
-                    toolbar.setupWithNavController(findNavController(), binding.mainDrawerLayout)
+                    toolbar.setupWithNavController(
+                        findNavController(),
+                        AppBarConfiguration(
+                            setOf(R.id.homeFragment, R.id.tagListFragment),
+                            binding.mainDrawerLayout
+                        )
+                    )
                 }
                 binding.mainNavigationView.setupWithNavController(findNavController())
             }
