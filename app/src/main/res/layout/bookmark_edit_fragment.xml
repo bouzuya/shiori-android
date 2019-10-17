@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:labelFor="@id/editNameEdit"
-            android:text="@string/edit_name_label" />
+            android:text="@string/common_edit_name_label" />
 
         <EditText
             android:id="@+id/editNameEdit"
@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:labelFor="@id/editUrlEdit"
-            android:text="@string/edit_url_label" />
+            android:text="@string/bookmark_edit_url_label" />
 
         <EditText
             android:id="@+id/editUrlEdit"
@@ -55,14 +55,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="@{() -> viewModel.cancel()}"
-                android:text="@string/edit_cancel_label" />
+                android:text="@string/common_edit_cancel_label" />
 
             <Button
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="@{() -> viewModel.ok()}"
-                android:text="@string/edit_ok_label" />
+                android:text="@string/common_edit_ok_label" />
         </LinearLayout>
     </LinearLayout>
 </layout>

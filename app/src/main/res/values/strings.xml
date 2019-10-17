@@ -1,14 +1,12 @@
 <resources>
     <string name="app_name">Sample5</string>
-    <string name="edit_cancel_label">Cancel</string>
-    <string name="edit_name_label">Name</string>
-    <string name="edit_ok_label">OK</string>
-    <string name="edit_url_label">URL</string>
+    <string name="bookmark_edit_fragment_name">Bookmark Edit</string>
+    <string name="bookmark_edit_url_label">URL</string>
+    <string name="common_edit_cancel_label">Cancel</string>
+    <string name="common_edit_name_label">Name</string>
+    <string name="common_edit_ok_label">OK</string>
     <string name="home_delete_all_button_label">delete all</string>
-    <string name="home_go_to_tag_label">Go to Tag</string>
-    <string name="home_insert_button_label">insert</string>
-    <string name="home_name_text_label">name</string>
-    <string name="home_url_text_label">http://example.com/</string>
-    <string name="tag_insert_button_label">Insert</string>
-    <string name="tag_name_text_label">Name</string>
+    <string name="home_fragment_name">Bookmark List</string>
+    <string name="tag_edit_fragment_name">Tag Edit</string>
+    <string name="tag_list_fragment_name">Tag List</string>
 </resources>
