@@ -3,7 +3,7 @@ package net.bouzuya.sample5
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 
-class HomeViewModel(private val _bookmarkRepository: BookmarkRepository) : ViewModel() {
+class BookmarkListViewModel(private val _bookmarkRepository: BookmarkRepository) : ViewModel() {
 
     private val _editBookmarkEvent = MutableLiveData<Event<Bookmark>>()
     val editBookmarkEvent: LiveData<Event<Bookmark>> = _editBookmarkEvent

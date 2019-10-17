@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="net.bouzuya.sample5.HomeViewModel" />
+            type="net.bouzuya.sample5.BookmarkListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            tools:context=".HomeFragment">
+            tools:context=".BookmarkListFragment">
 
             <Button
                 android:layout_width="match_parent"
@@ -37,7 +37,7 @@
                 app:bookmarkList="@{viewModel.bookmarkList}"
                 app:onClickBookmarkListener="@{viewModel.edit}"
                 tools:itemCount="3"
-                tools:listitem="@layout/home_bookmark_list_item" />
+                tools:listitem="@layout/bookmark_list_item" />
         </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

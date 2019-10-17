@@ -10,17 +10,17 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import net.bouzuya.sample5.HomeFragmentDirections.Companion.actionHomeFragmentToBookmarkEditFragment
-import net.bouzuya.sample5.databinding.HomeFragmentBinding
+import net.bouzuya.sample5.BookmarkListFragmentDirections.Companion.actionHomeFragmentToBookmarkEditFragment
+import net.bouzuya.sample5.databinding.BookmarkListFragmentBinding
 
-class HomeFragment : Fragment() {
+class BookmarkListFragment : Fragment() {
     private val mainViewModel: MainViewModel by activityViewModels()
-    private val viewModel: HomeViewModel by viewModels {
+    private val viewModel: BookmarkListViewModel by viewModels {
         // FIXME
         object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return HomeViewModel(mainViewModel.bookmarkRepository) as T
+                return BookmarkListViewModel(mainViewModel.bookmarkRepository) as T
             }
         }
     }
@@ -30,7 +30,7 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return HomeFragmentBinding.inflate(inflater, container, false).also { binding ->
+        return BookmarkListFragmentBinding.inflate(inflater, container, false).also { binding ->
             binding.lifecycleOwner = this
             binding.viewModel = viewModel
 
