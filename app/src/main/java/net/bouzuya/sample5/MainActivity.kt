@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
                 binding.lifecycleOwner = this
                 binding.viewModel = viewModel
 
-                binding.toolbar.let { toolbar ->
+                binding.mainToolbar.let { toolbar ->
                     setSupportActionBar(toolbar)
                     toolbar.setupWithNavController(
                         findNavController(),
@@ -52,5 +52,5 @@ class MainActivity : AppCompatActivity() {
         return findNavController().navigateUp()
     }
 
-    private fun findNavController(): NavController = findNavController(R.id.nav_host_fragment)
+    private fun findNavController(): NavController = findNavController(R.id.main_nav_host_fragment)
 }
