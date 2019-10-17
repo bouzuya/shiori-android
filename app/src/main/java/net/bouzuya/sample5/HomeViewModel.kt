@@ -8,9 +8,6 @@ class HomeViewModel(private val _bookmarkRepository: BookmarkRepository) : ViewM
     private val _editBookmarkEvent = MutableLiveData<Event<Bookmark>>()
     val editBookmarkEvent: LiveData<Event<Bookmark>> = _editBookmarkEvent
 
-    private val _goToTagEvent = MutableLiveData<Event<Unit>>()
-    val goToTagEvent: LiveData<Event<Unit>> = _goToTagEvent
-
     private val _bookmarkCount = MutableLiveData<Int>()
     val bookmarkCount: LiveData<String> = Transformations.map(_bookmarkCount) { it.toString() }
 
@@ -31,10 +28,6 @@ class HomeViewModel(private val _bookmarkRepository: BookmarkRepository) : ViewM
 
     fun edit(bookmark: Bookmark) {
         _editBookmarkEvent.value = Event(bookmark)
-    }
-
-    fun goToTag() {
-        _goToTagEvent.value = Event(Unit)
     }
 
     fun refresh() = viewModelScope.launch {

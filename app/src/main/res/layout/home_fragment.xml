@@ -34,11 +34,5 @@
             app:onClickBookmarkListener="@{viewModel.edit}"
             tools:itemCount="3"
             tools:listitem="@layout/home_bookmark_list_item" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> viewModel.goToTag()}"
-            android:text="@string/home_go_to_tag_label" />
     </LinearLayout>
 </layout>
