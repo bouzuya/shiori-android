@@ -35,8 +35,9 @@ class MainActivity : AppCompatActivity() {
 
                 binding.toolbar.let { toolbar ->
                     setSupportActionBar(toolbar)
-                    toolbar.setupWithNavController(findNavController())
+                    toolbar.setupWithNavController(findNavController(), binding.mainDrawerLayout)
                 }
+                binding.mainNavigationView.setupWithNavController(findNavController())
             }
     }
 
