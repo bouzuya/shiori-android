@@ -2,19 +2,19 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/home_fragment">
 
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/home_fragment"
         android:name="net.bouzuya.sample5.HomeFragment"
         android:label="Bookmark List">
         <action
-            android:id="@+id/action_homeFragment_to_bookmarkEditFragment"
-            app:destination="@id/bookmarkEditFragment" />
+            android:id="@+id/action_home_fragment_to_bookmark_edit_fragment"
+            app:destination="@id/bookmark_edit_fragment" />
     </fragment>
 
     <dialog
-        android:id="@+id/bookmarkEditFragment"
+        android:id="@+id/bookmark_edit_fragment"
         android:name="net.bouzuya.sample5.BookmarkEditFragment"
         android:label="Bookmark Edit">
         <argument
@@ -23,16 +23,16 @@
     </dialog>
 
     <fragment
-        android:id="@+id/tagListFragment"
+        android:id="@+id/tag_list_fragment"
         android:name="net.bouzuya.sample5.TagListFragment"
         android:label="Tag List">
         <action
-            android:id="@+id/action_tagListFragment_to_tagEditFragment"
-            app:destination="@id/tagEditFragment" />
+            android:id="@+id/action_tag_list_fragment_to_tag_edit_fragment"
+            app:destination="@id/tag_edit_fragment" />
     </fragment>
 
     <dialog
-        android:id="@+id/tagEditFragment"
+        android:id="@+id/tag_edit_fragment"
         android:name="net.bouzuya.sample5.TagEditFragment"
         android:label="Tag Edit">
         <argument
