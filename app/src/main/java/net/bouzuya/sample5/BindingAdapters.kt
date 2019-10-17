@@ -7,6 +7,8 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import net.bouzuya.sample5.data.Bookmark
+import net.bouzuya.sample5.data.Tag
 import net.bouzuya.sample5.databinding.BookmarkListItemBinding
 import net.bouzuya.sample5.databinding.TagListItemBinding
 

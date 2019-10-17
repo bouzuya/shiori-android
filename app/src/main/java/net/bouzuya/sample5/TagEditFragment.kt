@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import net.bouzuya.sample5.databinding.TagEditFragmentBinding
 
-
 class TagEditFragment : DialogFragment() {
     private val args: TagEditFragmentArgs by navArgs()
     private val mainViewModel: MainViewModel by activityViewModels()

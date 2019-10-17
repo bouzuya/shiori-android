@@ -6,7 +6,7 @@
 
         <variable
             name="tag"
-            type="net.bouzuya.sample5.Tag" />
+            type="net.bouzuya.sample5.data.Tag" />
 
         <variable
             name="onClickTagListener"

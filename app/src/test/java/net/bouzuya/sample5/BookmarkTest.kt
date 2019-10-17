@@ -1,5 +1,6 @@
 package net.bouzuya.sample5
 
+import net.bouzuya.sample5.data.Bookmark
 import org.junit.Assert
 import org.junit.Test
 
@@ -7,14 +8,24 @@ class BookmarkTest {
     @Test
     fun testId() {
         val id = 1L
-        val bookmark = Bookmark(id, "name1", "http://example.com/", "2000-01-02T15:16:17Z")
+        val bookmark = Bookmark(
+            id,
+            "name1",
+            "http://example.com/",
+            "2000-01-02T15:16:17Z"
+        )
         Assert.assertEquals(bookmark.id, id)
     }
 
     @Test
     fun testName() {
         val name = "name1"
-        val bookmark = Bookmark(1L, name, "http://example.com/", "2000-01-02T15:16:17Z")
+        val bookmark = Bookmark(
+            1L,
+            name,
+            "http://example.com/",
+            "2000-01-02T15:16:17Z"
+        )
         Assert.assertEquals(bookmark.name, name)
     }
 
@@ -28,7 +39,8 @@ class BookmarkTest {
     @Test
     fun testCreatedAt() {
         val createdAt = "2000-01-02T15:16:17Z"
-        val bookmark = Bookmark(1L, "name1", "http://example.com/", createdAt)
+        val bookmark =
+            Bookmark(1L, "name1", "http://example.com/", createdAt)
         Assert.assertEquals(bookmark.createdAt, createdAt)
     }
 }

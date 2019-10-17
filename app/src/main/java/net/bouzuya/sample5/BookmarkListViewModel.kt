@@ -2,6 +2,8 @@ package net.bouzuya.sample5
 
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
+import net.bouzuya.sample5.data.Bookmark
+import net.bouzuya.sample5.data.BookmarkRepository
 
 class BookmarkListViewModel(private val _bookmarkRepository: BookmarkRepository) : ViewModel() {
 

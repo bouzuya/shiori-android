@@ -1,4 +1,4 @@
-package net.bouzuya.sample5
+package net.bouzuya.sample5.data
 
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase

@@ -1,4 +1,4 @@
-package net.bouzuya.sample5
+package net.bouzuya.sample5.data
 
 class BookmarkRepository(private val _bookmarkDao: BookmarkDao) {
     suspend fun deleteAll(): Unit = _bookmarkDao.deleteAll()

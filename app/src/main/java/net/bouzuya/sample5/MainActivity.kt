@@ -10,6 +10,9 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import net.bouzuya.sample5.data.BookmarkDatabase
+import net.bouzuya.sample5.data.BookmarkRepository
+import net.bouzuya.sample5.data.TagRepository
 import net.bouzuya.sample5.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

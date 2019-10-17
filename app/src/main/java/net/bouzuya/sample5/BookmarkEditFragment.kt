@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import net.bouzuya.sample5.databinding.BookmarkEditFragmentBinding
 
-
 class BookmarkEditFragment : DialogFragment() {
     private val args: BookmarkEditFragmentArgs by navArgs()
     private val mainViewModel: MainViewModel by activityViewModels()

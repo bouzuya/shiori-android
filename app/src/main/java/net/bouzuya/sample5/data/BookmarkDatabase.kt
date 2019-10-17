@@ -1,4 +1,4 @@
-package net.bouzuya.sample5
+package net.bouzuya.sample5.data
 
 import android.content.Context
 import androidx.room.Database

@@ -6,7 +6,7 @@
 
         <variable
             name="bookmark"
-            type="net.bouzuya.sample5.Bookmark" />
+            type="net.bouzuya.sample5.data.Bookmark" />
 
         <variable
             name="onClickBookmarkListener"

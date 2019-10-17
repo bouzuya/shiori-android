@@ -1,4 +1,4 @@
-package net.bouzuya.sample5
+package net.bouzuya.sample5.data
 
 class TagRepository(private val _tagDao: TagDao) {
     suspend fun findAll(): List<Tag> = _tagDao.findAll()

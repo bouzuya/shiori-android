@@ -3,6 +3,8 @@ package net.bouzuya.sample5
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import net.bouzuya.sample5.data.BookmarkRepository
+import net.bouzuya.sample5.data.TagRepository
 
 class MainViewModel(
     val bookmarkRepository: BookmarkRepository,

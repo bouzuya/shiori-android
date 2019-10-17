@@ -1,4 +1,4 @@
-package net.bouzuya.sample5
+package net.bouzuya.sample5.data
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

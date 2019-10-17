@@ -6,7 +6,6 @@ import com.jakewharton.threetenabp.AndroidThreeTen
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 
-
 class Sample5Application : Application() {
     override fun onCreate() {
         super.onCreate()
