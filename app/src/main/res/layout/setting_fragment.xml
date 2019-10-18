@@ -20,33 +20,10 @@
             android:orientation="vertical"
             tools:context=".SettingFragment">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="64dp">
-
-                <TextView
-                    android:id="@+id/setting_text_1_primary"
-                    android:layout_width="match_parent"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="16dp"
-                    android:gravity="bottom"
-                    android:text="@string/setting_bookmark_count_label"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/setting_text_1_secondary"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:layout_marginStart="16dp"
-                    android:gravity="bottom"
-                    android:text="@{viewModel.bookmarkCount}"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/setting_text_1_primary" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <include
+                layout="@layout/setting_list_item"
+                app:primaryText="@{@string/setting_bookmark_count_label}"
+                app:secondaryText="@{viewModel.bookmarkCount}" />
         </LinearLayout>
     </ScrollView>
 </layout>
