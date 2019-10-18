@@ -1,6 +1,8 @@
 package net.bouzuya.sample5.data
 
 class BookmarkRepository(private val _bookmarkDao: BookmarkDao) {
+    suspend fun countAll(): Int = _bookmarkDao.countAll()
+
     suspend fun deleteAll(): Unit = _bookmarkDao.deleteAll()
 
     suspend fun findAll(): List<Bookmark> = _bookmarkDao.findAll()

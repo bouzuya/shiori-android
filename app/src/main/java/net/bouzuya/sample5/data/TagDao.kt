@@ -7,6 +7,9 @@ import androidx.room.Update
 
 @Dao
 interface TagDao {
+    @Query("SELECT COUNT(*) FROM tags")
+    suspend fun countAll(): Int
+
     @Query("SELECT * FROM tags")
     suspend fun findAll(): List<Tag>
 

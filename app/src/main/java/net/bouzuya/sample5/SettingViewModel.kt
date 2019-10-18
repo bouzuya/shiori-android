@@ -21,8 +21,8 @@ class SettingViewModel(
 
     init {
         viewModelScope.launch {
-            _bookmarkCount.value = _bookmarkRepository.findAll().size
-            _tagCount.value = _tagRepository.findAll().size
+            _bookmarkCount.value = _bookmarkRepository.countAll()
+            _tagCount.value = _tagRepository.countAll()
         }
     }
 }

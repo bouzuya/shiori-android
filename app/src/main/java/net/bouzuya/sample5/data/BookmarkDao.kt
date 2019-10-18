@@ -7,6 +7,9 @@ import androidx.room.Update
 
 @Dao
 interface BookmarkDao {
+    @Query("SELECT COUNT(*) FROM bookmarks")
+    suspend fun countAll(): Int
+
     @Query("DELETE FROM bookmarks")
     suspend fun deleteAll()
 
