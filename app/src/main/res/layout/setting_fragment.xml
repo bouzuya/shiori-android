@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -19,17 +20,33 @@
             android:orientation="vertical"
             tools:context=".SettingFragment">
 
-            <TextView
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="false"
-                android:text="@string/setting_bookmark_count_label" />
+                android:layout_height="64dp">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:enabled="false"
-                android:text="@{viewModel.bookmarkCount}" />
+                <TextView
+                    android:id="@+id/setting_text_1_primary"
+                    android:layout_width="match_parent"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="16dp"
+                    android:gravity="bottom"
+                    android:text="@string/setting_bookmark_count_label"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/setting_text_1_secondary"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="16dp"
+                    android:gravity="bottom"
+                    android:text="@{viewModel.bookmarkCount}"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/setting_text_1_primary" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
 </layout>
