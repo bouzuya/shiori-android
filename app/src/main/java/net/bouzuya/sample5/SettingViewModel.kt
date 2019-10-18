@@ -25,6 +25,7 @@ class SettingViewModel(
 
     fun deleteAll() = viewModelScope.launch {
         _bookmarkRepository.deleteAll()
+        _tagRepository.deleteAll()
 
         refresh()
     }

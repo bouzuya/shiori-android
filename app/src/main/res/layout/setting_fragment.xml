@@ -48,7 +48,7 @@
             <include
                 layout="@layout/setting_list_item_one_line"
                 app:onClick="@{() -> viewModel.deleteAll()}"
-                app:primaryText="@{@string/setting_bookmark_delete_all_label}" />
+                app:primaryText="@{@string/setting_delete_all_label}" />
         </LinearLayout>
     </ScrollView>
 </layout>

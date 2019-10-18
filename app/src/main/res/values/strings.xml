@@ -8,8 +8,8 @@
     <string name="common_edit_ok_label">OK</string>
     <string name="setting_app_version_label">App Version</string>
     <string name="setting_bookmark_count_label">Bookmark Count</string>
-    <string name="setting_bookmark_delete_all_label">Delete All Bookmarks</string>
     <string name="setting_database_version_label">Database Version</string>
+    <string name="setting_delete_all_label">Delete All</string>
     <string name="setting_tag_count_label">Tag Count</string>
     <string name="setting_fragment_name">Settings</string>
     <string name="tag_edit_fragment_name">Tag Edit</string>
