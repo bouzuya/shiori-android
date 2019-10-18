@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@id/bookmark_list_fragment"
-        android:icon="@drawable/ic_bookmark_border_black_24dp"
-        android:title="@string/bookmark_list_fragment_name" />
+    <group android:id="@+id/data_menu_item_group">
 
-    <item
-        android:id="@id/tag_list_fragment"
-        android:icon="@drawable/ic_label_outline_black_24dp"
-        android:title="@string/tag_list_fragment_name" />
+        <item
+            android:id="@id/bookmark_list_fragment"
+            android:icon="@drawable/ic_bookmark_border_black_24dp"
+            android:title="@string/bookmark_list_fragment_name" />
 
-    <item
-        android:id="@id/setting_fragment"
-        android:icon="@drawable/ic_settings_black_24dp"
-        android:title="@string/setting_fragment_name" />
+        <item
+            android:id="@id/tag_list_fragment"
+            android:icon="@drawable/ic_label_outline_black_24dp"
+            android:title="@string/tag_list_fragment_name" />
+    </group>
+
+    <group android:id="@+id/setting_menu_item_group">
+
+        <item
+            android:id="@id/setting_fragment"
+            android:icon="@drawable/ic_settings_black_24dp"
+            android:title="@string/setting_fragment_name" />
+    </group>
 </menu>
