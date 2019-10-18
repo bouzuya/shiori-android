@@ -19,7 +19,10 @@ class SettingFragment : Fragment() {
         object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return SettingViewModel(mainViewModel.bookmarkRepository) as T
+                return SettingViewModel(
+                    mainViewModel.bookmarkRepository,
+                    BuildConfig.VERSION_NAME
+                ) as T
             }
         }
     }

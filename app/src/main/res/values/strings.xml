@@ -7,6 +7,7 @@
     <string name="common_edit_name_label">Name</string>
     <string name="common_edit_ok_label">OK</string>
     <string name="home_delete_all_button_label">delete all</string>
+    <string name="setting_app_version_label">App Version</string>
     <string name="setting_bookmark_count_label">Bookmark Count</string>
     <string name="setting_fragment_name">Settings</string>
     <string name="tag_edit_fragment_name">Tag Edit</string>
