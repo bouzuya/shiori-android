@@ -34,6 +34,11 @@
                 layout="@layout/setting_list_item"
                 app:primaryText="@{@string/setting_bookmark_count_label}"
                 app:secondaryText="@{viewModel.bookmarkCount}" />
+
+            <include
+                layout="@layout/setting_list_item"
+                app:primaryText="@{@string/setting_tag_count_label}"
+                app:secondaryText="@{viewModel.tagCount}" />
         </LinearLayout>
     </ScrollView>
 </layout>

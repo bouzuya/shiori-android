@@ -22,6 +22,7 @@ class SettingFragment : Fragment() {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 return SettingViewModel(
                     mainViewModel.bookmarkRepository,
+                    mainViewModel.tagRepository,
                     BuildConfig.VERSION_NAME,
                     BookmarkDatabase.version
                 ) as T
