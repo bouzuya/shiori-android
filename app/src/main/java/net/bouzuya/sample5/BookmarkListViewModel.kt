@@ -25,12 +25,6 @@ class BookmarkListViewModel(private val _bookmarkRepository: BookmarkRepository)
         }
     }
 
-    fun deleteAll() = viewModelScope.launch {
-        _bookmarkRepository.deleteAll()
-
-        refreshList()
-    }
-
     fun edit(bookmark: Bookmark) {
         _editBookmarkEvent.value = Event(bookmark)
     }

@@ -12,28 +12,16 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".BookmarkListFragment">
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            tools:context=".BookmarkListFragment">
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{() -> viewModel.deleteAll()}"
-                android:text="@string/home_delete_all_button_label" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:bookmarkList="@{viewModel.bookmarkList}"
-                app:onClickBookmarkListener="@{viewModel.edit}"
-                tools:itemCount="3"
-                tools:listitem="@layout/bookmark_list_item" />
-        </LinearLayout>
+            app:bookmarkList="@{viewModel.bookmarkList}"
+            app:onClickBookmarkListener="@{viewModel.edit}"
+            tools:itemCount="3"
+            tools:listitem="@layout/bookmark_list_item" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="56dp"
