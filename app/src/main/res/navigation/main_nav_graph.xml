@@ -2,14 +2,14 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/home_fragment">
+    app:startDestination="@id/bookmark_list_fragment">
 
     <fragment
-        android:id="@+id/home_fragment"
+        android:id="@+id/bookmark_list_fragment"
         android:name="net.bouzuya.sample5.BookmarkListFragment"
-        android:label="@string/home_fragment_name">
+        android:label="@string/bookmark_list_fragment_name">
         <action
-            android:id="@+id/action_home_fragment_to_bookmark_edit_fragment"
+            android:id="@+id/action_bookmark_list_fragment_to_bookmark_edit_fragment"
             app:destination="@id/bookmark_edit_fragment" />
     </fragment>
 

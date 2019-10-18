@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import net.bouzuya.sample5.BookmarkListFragmentDirections.Companion.actionHomeFragmentToBookmarkEditFragment
+import net.bouzuya.sample5.BookmarkListFragmentDirections.Companion.actionBookmarkListFragmentToBookmarkEditFragment
 import net.bouzuya.sample5.databinding.BookmarkListFragmentBinding
 
 class BookmarkListFragment : Fragment() {
@@ -40,11 +40,15 @@ class BookmarkListFragment : Fragment() {
             })
 
             viewModel.createBookmarkEvent.observe(this, EventObserver {
-                findNavController().navigate(actionHomeFragmentToBookmarkEditFragment(0))
+                findNavController().navigate(actionBookmarkListFragmentToBookmarkEditFragment(0))
             })
 
             viewModel.editBookmarkEvent.observe(this, EventObserver { bookmark ->
-                findNavController().navigate(actionHomeFragmentToBookmarkEditFragment(bookmark.id))
+                findNavController().navigate(
+                    actionBookmarkListFragmentToBookmarkEditFragment(
+                        bookmark.id
+                    )
+                )
             })
         }.root
     }
