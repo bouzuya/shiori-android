@@ -27,6 +27,11 @@
 
             <include
                 layout="@layout/setting_list_item"
+                app:primaryText="@{@string/setting_database_version_label}"
+                app:secondaryText="@{viewModel.databaseVersion}" />
+
+            <include
+                layout="@layout/setting_list_item"
                 app:primaryText="@{@string/setting_bookmark_count_label}"
                 app:secondaryText="@{viewModel.bookmarkCount}" />
         </LinearLayout>

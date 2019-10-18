@@ -6,10 +6,13 @@ import net.bouzuya.sample5.data.BookmarkRepository
 
 class SettingViewModel(
     private val _bookmarkRepository: BookmarkRepository,
-    val appVersion: String
+    val appVersion: String,
+    databaseVersionNumber: Int
 ) : ViewModel() {
     private val _bookmarkCount = MutableLiveData<Int>()
     val bookmarkCount: LiveData<String> = Transformations.map(_bookmarkCount) { it.toString() }
+
+    val databaseVersion: String = databaseVersionNumber.toString()
 
     init {
         viewModelScope.launch {

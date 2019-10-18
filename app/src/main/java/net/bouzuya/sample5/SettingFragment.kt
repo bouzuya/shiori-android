@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import net.bouzuya.sample5.data.BookmarkDatabase
 import net.bouzuya.sample5.databinding.SettingFragmentBinding
 
 
@@ -21,7 +22,8 @@ class SettingFragment : Fragment() {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 return SettingViewModel(
                     mainViewModel.bookmarkRepository,
-                    BuildConfig.VERSION_NAME
+                    BuildConfig.VERSION_NAME,
+                    BookmarkDatabase.version
                 ) as T
             }
         }

@@ -9,6 +9,7 @@
     <string name="home_delete_all_button_label">delete all</string>
     <string name="setting_app_version_label">App Version</string>
     <string name="setting_bookmark_count_label">Bookmark Count</string>
+    <string name="setting_database_version_label">Database Version</string>
     <string name="setting_fragment_name">Settings</string>
     <string name="tag_edit_fragment_name">Tag Edit</string>
     <string name="tag_list_fragment_name">Tag List</string>

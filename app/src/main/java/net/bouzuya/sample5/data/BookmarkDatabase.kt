@@ -5,13 +5,18 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Bookmark::class, BookmarkTag::class, Tag::class], version = 3)
+@Database(
+    entities = [Bookmark::class, BookmarkTag::class, Tag::class],
+    version = BookmarkDatabase.version
+)
 abstract class BookmarkDatabase : RoomDatabase() {
     abstract fun bookmarkDao(): BookmarkDao
 
     abstract fun tagDao(): TagDao
 
     companion object {
+        const val version = 3
+
         @Volatile
         private var database: BookmarkDatabase? = null
 
