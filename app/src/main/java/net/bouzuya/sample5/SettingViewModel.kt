@@ -20,9 +20,17 @@ class SettingViewModel(
     val tagCount: LiveData<String> = Transformations.map(_tagCount) { it.toString() }
 
     init {
-        viewModelScope.launch {
-            _bookmarkCount.value = _bookmarkRepository.countAll()
-            _tagCount.value = _tagRepository.countAll()
-        }
+        refresh()
+    }
+
+    fun deleteAll() = viewModelScope.launch {
+        _bookmarkRepository.deleteAll()
+
+        refresh()
+    }
+
+    private fun refresh() = viewModelScope.launch {
+        _bookmarkCount.value = _bookmarkRepository.countAll()
+        _tagCount.value = _tagRepository.countAll()
     }
 }

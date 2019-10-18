@@ -39,6 +39,11 @@
                 layout="@layout/setting_list_item_two_line"
                 app:primaryText="@{@string/setting_tag_count_label}"
                 app:secondaryText="@{viewModel.tagCount}" />
+
+            <include
+                layout="@layout/setting_list_item_one_line"
+                app:onClick="@{() -> viewModel.deleteAll()}"
+                app:primaryText="@{@string/home_delete_all_button_label}" />
         </LinearLayout>
     </ScrollView>
 </layout>
