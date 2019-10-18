@@ -39,4 +39,8 @@
             android:name="tagId"
             app:argType="long" />
     </dialog>
+    <fragment
+        android:id="@+id/setting_fragment"
+        android:name="net.bouzuya.sample5.SettingFragment"
+        android:label="@string/setting_fragment_name" />
 </navigation>
