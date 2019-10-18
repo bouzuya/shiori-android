@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/bookmark_list_fragment"
-        android:name="net.bouzuya.sample5.BookmarkListFragment"
+        android:name="net.bouzuya.shiori.BookmarkListFragment"
         android:label="@string/bookmark_list_fragment_name">
         <action
             android:id="@+id/action_bookmark_list_fragment_to_bookmark_edit_fragment"
@@ -15,7 +15,7 @@
 
     <dialog
         android:id="@+id/bookmark_edit_fragment"
-        android:name="net.bouzuya.sample5.BookmarkEditFragment"
+        android:name="net.bouzuya.shiori.BookmarkEditFragment"
         android:label="@string/bookmark_edit_fragment_name">
         <argument
             android:name="bookmarkId"
@@ -24,7 +24,7 @@
 
     <fragment
         android:id="@+id/tag_list_fragment"
-        android:name="net.bouzuya.sample5.TagListFragment"
+        android:name="net.bouzuya.shiori.TagListFragment"
         android:label="@string/tag_list_fragment_name">
         <action
             android:id="@+id/action_tag_list_fragment_to_tag_edit_fragment"
@@ -33,7 +33,7 @@
 
     <dialog
         android:id="@+id/tag_edit_fragment"
-        android:name="net.bouzuya.sample5.TagEditFragment"
+        android:name="net.bouzuya.shiori.TagEditFragment"
         android:label="@string/tag_edit_fragment_name">
         <argument
             android:name="tagId"
@@ -41,6 +41,6 @@
     </dialog>
     <fragment
         android:id="@+id/setting_fragment"
-        android:name="net.bouzuya.sample5.SettingFragment"
+        android:name="net.bouzuya.shiori.SettingFragment"
         android:label="@string/setting_fragment_name" />
 </navigation>

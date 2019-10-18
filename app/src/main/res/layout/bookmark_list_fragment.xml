@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="net.bouzuya.sample5.BookmarkListViewModel" />
+            type="net.bouzuya.shiori.BookmarkListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

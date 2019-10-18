@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="net.bouzuya.sample5.BookmarkEditViewModel" />
+            type="net.bouzuya.shiori.BookmarkEditViewModel" />
     </data>
 
     <LinearLayout

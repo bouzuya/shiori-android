@@ -6,11 +6,11 @@
 
         <variable
             name="tag"
-            type="net.bouzuya.sample5.data.Tag" />
+            type="net.bouzuya.shiori.data.Tag" />
 
         <variable
             name="onClickTagListener"
-            type="net.bouzuya.sample5.OnClickTagListener" />
+            type="net.bouzuya.shiori.OnClickTagListener" />
     </data>
 
     <LinearLayout

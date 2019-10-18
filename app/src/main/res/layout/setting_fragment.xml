@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="net.bouzuya.sample5.SettingViewModel" />
+            type="net.bouzuya.shiori.SettingViewModel" />
     </data>
 
     <ScrollView

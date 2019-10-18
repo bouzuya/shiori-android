@@ -6,11 +6,11 @@
 
         <variable
             name="bookmark"
-            type="net.bouzuya.sample5.data.Bookmark" />
+            type="net.bouzuya.shiori.data.Bookmark" />
 
         <variable
             name="onClickBookmarkListener"
-            type="net.bouzuya.sample5.OnClickBookmarkListener" />
+            type="net.bouzuya.shiori.OnClickBookmarkListener" />
     </data>
 
     <LinearLayout

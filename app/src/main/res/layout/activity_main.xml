@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="net.bouzuya.sample5.MainViewModel" />
+            type="net.bouzuya.shiori.MainViewModel" />
     </data>
 
     <androidx.drawerlayout.widget.DrawerLayout

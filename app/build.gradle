@@ -8,7 +8,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "net.bouzuya.sample5"
+        applicationId "net.bouzuya.shiori"
         minSdkVersion 23
         targetSdkVersion 29
         versionCode 6

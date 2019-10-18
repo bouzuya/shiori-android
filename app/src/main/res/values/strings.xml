@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Sample5</string>
+    <string name="app_name">Shiori</string>
     <string name="bookmark_edit_fragment_name">Bookmark Edit</string>
     <string name="bookmark_edit_url_label">URL</string>
     <string name="bookmark_list_fragment_name">Bookmark List</string>
