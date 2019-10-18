@@ -26,11 +26,6 @@
                 android:onClick="@{() -> viewModel.deleteAll()}"
                 android:text="@string/home_delete_all_button_label" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{viewModel.bookmarkCount}" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

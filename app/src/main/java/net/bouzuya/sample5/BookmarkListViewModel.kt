@@ -1,6 +1,9 @@
 package net.bouzuya.sample5
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import net.bouzuya.sample5.data.Bookmark
 import net.bouzuya.sample5.data.BookmarkRepository
@@ -9,9 +12,6 @@ class BookmarkListViewModel(private val _bookmarkRepository: BookmarkRepository)
 
     private val _editBookmarkEvent = MutableLiveData<Event<Bookmark>>()
     val editBookmarkEvent: LiveData<Event<Bookmark>> = _editBookmarkEvent
-
-    private val _bookmarkCount = MutableLiveData<Int>()
-    val bookmarkCount: LiveData<String> = Transformations.map(_bookmarkCount) { it.toString() }
 
     private val _bookmarkList = MutableLiveData<List<Bookmark>>()
     val bookmarkList: LiveData<List<Bookmark>> = _bookmarkList
@@ -45,6 +45,5 @@ class BookmarkListViewModel(private val _bookmarkRepository: BookmarkRepository)
 
     private suspend fun refreshList() {
         _bookmarkList.value = _bookmarkRepository.findAll()
-        _bookmarkCount.value = _bookmarkList.value?.size ?: 0
     }
 }
