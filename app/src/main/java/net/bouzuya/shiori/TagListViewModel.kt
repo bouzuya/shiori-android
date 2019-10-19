@@ -30,6 +30,11 @@ class TagListViewModel(private val _tagRepository: TagRepository) : ViewModel() 
         _editTagEvent.value = Event(tag)
     }
 
+    fun open(tag: Tag) {
+        // TODO
+        _editTagEvent.value = Event(tag)
+    }
+
     fun refresh() {
         refreshList()
     }

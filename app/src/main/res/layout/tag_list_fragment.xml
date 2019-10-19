@@ -23,7 +23,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:onClickTagListener="@{viewModel.edit}"
+                app:onClickTagListener="@{viewModel::open}"
+                app:onLongClickTagListener="@{viewModel::edit}"
                 app:tagList="@{viewModel.tagList}"
                 tools:itemCount="3"
                 tools:listitem="@layout/tag_list_item" />

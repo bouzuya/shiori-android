@@ -19,8 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:bookmarkList="@{viewModel.bookmarkList}"
-            app:onClickBookmarkListener="@{viewModel.open}"
-            app:onLongClickBookmarkListener="@{viewModel.edit}"
+            app:onClickBookmarkListener="@{viewModel::open}"
+            app:onLongClickBookmarkListener="@{viewModel::edit}"
             tools:itemCount="3"
             tools:listitem="@layout/bookmark_list_item" />
 
