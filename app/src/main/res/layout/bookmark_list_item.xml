@@ -18,53 +18,58 @@
             type="net.bouzuya.shiori.OnLongClickBookmarkListener" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:gravity="center_vertical"
+        android:layout_height="64dp"
         android:onClick="@{() -> onClickBookmarkListener.onClick(bookmark)}"
         android:orientation="horizontal"
         app:onLongClick="@{() -> onLongClickBookmarkListener.onLongClick(bookmark)}">
 
         <TextView
+            android:id="@+id/bookmark_list_item_name"
+            android:layout_width="0dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:ellipsize="end"
+            android:gravity="bottom"
+            android:maxLines="1"
+            android:text="@{bookmark.name}"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/bookmark_list_item_date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Example" />
+
+        <TextView
+            android:id="@+id/bookmark_list_item_url"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:gravity="bottom"
+            android:maxLines="1"
+            android:text="@{bookmark.url}"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bookmark_list_item_name"
+            tools:text="http://example.com" />
+
+        <TextView
+            android:id="@+id/bookmark_list_item_date"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="@{String.valueOf(bookmark.id)}"
-            tools:text="1" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="@{bookmark.name}"
-                tools:text="Example" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="@{bookmark.url}"
-                tools:text="http://example.com" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:gravity="end"
-                android:text="@{bookmark.createdAt}"
-                tools:text="2019-01-02T15:16:17Z" />
-        </LinearLayout>
-    </LinearLayout>
+            android:layout_height="24dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="bottom|end"
+            android:text="@{bookmark.createdAt}"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="2019-01-02T15:16:17Z" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
