@@ -10,6 +10,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import net.bouzuya.shiori.data.Bookmark
+import net.bouzuya.shiori.data.BookmarkAction
 import net.bouzuya.shiori.data.Tag
 import net.bouzuya.shiori.databinding.BookmarkListItemBinding
 import net.bouzuya.shiori.databinding.TagListItemBinding
@@ -30,21 +31,21 @@ interface OnClickBookmarkListener {
     fun onClick(bookmark: Bookmark)
 }
 
+interface OnBookmarkActionListener {
+    fun onAction(action: BookmarkAction, bookmark: Bookmark)
+}
+
 @BindingAdapter(
     "bookmarkList",
+    "onBookmarkActionListener",
     "onClickBookmarkListener",
-    "onEditBookmarkListener",
-    "onLongClickBookmarkListener",
-    "onOpenBookmarkListener",
-    "onShareBookmarkListener"
+    "onLongClickBookmarkListener"
 )
 fun RecyclerView.setBookmarkList(
     bookmarkList: List<Bookmark>?,
+    onBookmarkActionListener: OnBookmarkActionListener?,
     onClickBookmarkListener: OnClickBookmarkListener?,
-    onEditBookmarkListener: OnClickBookmarkListener?,
-    onLongClickBookmarkListener: OnClickBookmarkListener?,
-    onOpenBookmarkListener: OnClickBookmarkListener?,
-    onShareBookmarkListener: OnClickBookmarkListener?
+    onLongClickBookmarkListener: OnClickBookmarkListener?
 ) {
     val itemList = bookmarkList ?: emptyList()
 
@@ -78,20 +79,14 @@ fun RecyclerView.setBookmarkList(
                     popup.menuInflater.inflate(R.menu.bookmark_popup, popup.menu)
                     popup.setOnMenuItemClickListener { item ->
                         when (item.itemId) {
-                            R.id.bookmark_edit -> {
-                                onEditBookmarkListener?.onClick(bookmark)
-                                true
-                            }
-                            R.id.bookmark_open -> {
-                                onOpenBookmarkListener?.onClick(bookmark)
-                                true
-                            }
-                            R.id.bookmark_share -> {
-                                onShareBookmarkListener?.onClick(bookmark)
-                                true
-                            }
-                            else -> false
-                        }
+                            R.id.bookmark_edit -> BookmarkAction.Edit
+                            R.id.bookmark_open -> BookmarkAction.Open
+                            R.id.bookmark_share -> BookmarkAction.Share
+                            else -> null
+                        }?.let { action ->
+                            onBookmarkActionListener?.onAction(action, bookmark)
+                            true
+                        } ?: false
                     }
                     popup.show()
                 }

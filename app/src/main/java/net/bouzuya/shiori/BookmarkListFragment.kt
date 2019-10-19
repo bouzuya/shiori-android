@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import net.bouzuya.shiori.BookmarkListFragmentDirections.Companion.actionBookmarkListFragmentToBookmarkEditFragment
+import net.bouzuya.shiori.data.BookmarkAction
 import net.bouzuya.shiori.databinding.BookmarkListFragmentBinding
 
 class BookmarkListFragment : Fragment() {
@@ -45,27 +46,28 @@ class BookmarkListFragment : Fragment() {
                 findNavController().navigate(actionBookmarkListFragmentToBookmarkEditFragment(0))
             })
 
-            viewModel.editBookmarkEvent.observe(this, EventObserver { bookmark ->
-                findNavController().navigate(
-                    actionBookmarkListFragmentToBookmarkEditFragment(
-                        bookmark.id
+            viewModel.bookmarkActionEvent.observe(this, EventObserver { (action, bookmark) ->
+                when (action) {
+                    BookmarkAction.Open -> startActivity(
+                        Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse(bookmark.url)
+                        )
                     )
-                )
-            })
-
-            viewModel.openBookmarkEvent.observe(this, EventObserver { bookmark ->
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(bookmark.url)))
-            })
-
-            viewModel.shareBookmarkEvent.observe(this, EventObserver { bookmark ->
-                startActivity(
-                    Intent.createChooser(
-                        Intent(Intent.ACTION_SEND).also { intent ->
-                            intent.type = "text/plain"
-                            intent.putExtra(Intent.EXTRA_TEXT, bookmark.url)
-                        }, bookmark.url
+                    BookmarkAction.Edit -> findNavController().navigate(
+                        actionBookmarkListFragmentToBookmarkEditFragment(
+                            bookmark.id
+                        )
                     )
-                )
+                    BookmarkAction.Share -> startActivity(
+                        Intent.createChooser(
+                            Intent(Intent.ACTION_SEND).also { intent ->
+                                intent.type = "text/plain"
+                                intent.putExtra(Intent.EXTRA_TEXT, bookmark.url)
+                            }, bookmark.url
+                        )
+                    )
+                }
             })
         }.root
     }
