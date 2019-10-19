@@ -35,14 +35,16 @@ interface OnClickBookmarkListener {
     "onClickBookmarkListener",
     "onEditBookmarkListener",
     "onLongClickBookmarkListener",
-    "onOpenBookmarkListener"
+    "onOpenBookmarkListener",
+    "onShareBookmarkListener"
 )
 fun RecyclerView.setBookmarkList(
     bookmarkList: List<Bookmark>?,
     onClickBookmarkListener: OnClickBookmarkListener?,
     onEditBookmarkListener: OnClickBookmarkListener?,
     onLongClickBookmarkListener: OnClickBookmarkListener?,
-    onOpenBookmarkListener: OnClickBookmarkListener?
+    onOpenBookmarkListener: OnClickBookmarkListener?,
+    onShareBookmarkListener: OnClickBookmarkListener?
 ) {
     val itemList = bookmarkList ?: emptyList()
 
@@ -82,6 +84,10 @@ fun RecyclerView.setBookmarkList(
                             }
                             R.id.bookmark_open -> {
                                 onOpenBookmarkListener?.onClick(bookmark)
+                                true
+                            }
+                            R.id.bookmark_share -> {
+                                onShareBookmarkListener?.onClick(bookmark)
                                 true
                             }
                             else -> false

@@ -22,6 +22,9 @@ class BookmarkListViewModel(private val _bookmarkRepository: BookmarkRepository)
     private val _openBookmarkEvent = MutableLiveData<Event<Bookmark>>()
     val openBookmarkEvent: LiveData<Event<Bookmark>> = _openBookmarkEvent
 
+    private val _shareBookmarkEvent = MutableLiveData<Event<Bookmark>>()
+    val shareBookmarkEvent: LiveData<Event<Bookmark>> = _shareBookmarkEvent
+
     init {
         viewModelScope.launch {
             refreshList()
@@ -52,6 +55,10 @@ class BookmarkListViewModel(private val _bookmarkRepository: BookmarkRepository)
 
     fun refresh() = viewModelScope.launch {
         refreshList()
+    }
+
+    fun share(bookmark: Bookmark) {
+        _shareBookmarkEvent.value = Event(bookmark)
     }
 
     private suspend fun refreshList() {

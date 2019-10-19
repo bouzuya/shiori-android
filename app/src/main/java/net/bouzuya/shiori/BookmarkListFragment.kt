@@ -56,6 +56,17 @@ class BookmarkListFragment : Fragment() {
             viewModel.openBookmarkEvent.observe(this, EventObserver { bookmark ->
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(bookmark.url)))
             })
+
+            viewModel.shareBookmarkEvent.observe(this, EventObserver { bookmark ->
+                startActivity(
+                    Intent.createChooser(
+                        Intent(Intent.ACTION_SEND).also { intent ->
+                            intent.type = "text/plain"
+                            intent.putExtra(Intent.EXTRA_TEXT, bookmark.url)
+                        }, bookmark.url
+                    )
+                )
+            })
         }.root
     }
 }
