@@ -3,9 +3,7 @@ package net.bouzuya.shiori
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.PopupMenu
-import androidx.core.widget.doAfterTextChanged
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,18 +12,6 @@ import net.bouzuya.shiori.data.BookmarkAction
 import net.bouzuya.shiori.data.Tag
 import net.bouzuya.shiori.databinding.BookmarkListItemBinding
 import net.bouzuya.shiori.databinding.TagListItemBinding
-
-interface EditTextAfterTextChangedListener {
-    fun afterTextChanged(s: String)
-}
-
-@BindingAdapter("editTextAfterTextChanged")
-fun EditText.setEditTextAfterTextChanged(listener: EditTextAfterTextChangedListener?) {
-    if (listener == null) return
-    doAfterTextChanged {
-        listener.afterTextChanged(it.toString())
-    }
-}
 
 interface OnClickBookmarkListener {
     fun onClick(bookmark: Bookmark)
