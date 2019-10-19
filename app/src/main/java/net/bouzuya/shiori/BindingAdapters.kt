@@ -1,6 +1,7 @@
 package net.bouzuya.shiori
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.core.widget.doAfterTextChanged
@@ -28,10 +29,15 @@ interface OnClickBookmarkListener {
     fun onClick(bookmark: Bookmark)
 }
 
-@BindingAdapter("bookmarkList", "onClickBookmarkListener")
+interface OnLongClickBookmarkListener {
+    fun onLongClick(bookmark: Bookmark)
+}
+
+@BindingAdapter("bookmarkList", "onClickBookmarkListener", "onLongClickBookmarkListener")
 fun RecyclerView.setBookmarkList(
     bookmarkList: List<Bookmark>?,
-    onClickBookmarkListener: OnClickBookmarkListener?
+    onClickBookmarkListener: OnClickBookmarkListener?,
+    onLongClickBookmarkListener: OnLongClickBookmarkListener?
 ) {
     val itemList = bookmarkList ?: emptyList()
 
@@ -57,6 +63,7 @@ fun RecyclerView.setBookmarkList(
         override fun onBindViewHolder(holder: BindingViewHolder, position: Int) {
             holder.binding.bookmark = itemList[position]
             holder.binding.onClickBookmarkListener = onClickBookmarkListener
+            holder.binding.onLongClickBookmarkListener = onLongClickBookmarkListener
         }
     }
 }
@@ -95,5 +102,17 @@ fun RecyclerView.setTagList(
             holder.binding.tag = itemList[position]
             holder.binding.onClickTagListener = onClickTagListener
         }
+    }
+}
+
+interface OnLongClickListener {
+    fun onLongClick()
+}
+
+@BindingAdapter("onLongClick")
+fun View.setMyOnLongClickListener(onLongClickListener: OnLongClickListener) {
+    setOnLongClickListener {
+        onLongClickListener.onLongClick()
+        true
     }
 }

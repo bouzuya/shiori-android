@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -11,6 +12,10 @@
         <variable
             name="onClickBookmarkListener"
             type="net.bouzuya.shiori.OnClickBookmarkListener" />
+
+        <variable
+            name="onLongClickBookmarkListener"
+            type="net.bouzuya.shiori.OnLongClickBookmarkListener" />
     </data>
 
     <LinearLayout
@@ -20,7 +25,8 @@
         android:layout_marginBottom="8dp"
         android:gravity="center_vertical"
         android:onClick="@{() -> onClickBookmarkListener.onClick(bookmark)}"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:onLongClick="@{() -> onLongClickBookmarkListener.onLongClick(bookmark)}">
 
         <TextView
             android:layout_width="wrap_content"
