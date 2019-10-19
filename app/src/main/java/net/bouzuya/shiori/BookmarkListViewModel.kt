@@ -28,6 +28,11 @@ class BookmarkListViewModel(private val _bookmarkRepository: BookmarkRepository)
         }
     }
 
+    fun click(bookmark: Bookmark) {
+        // TODO: setting
+        open(bookmark)
+    }
+
     fun create() {
         _createBookmarkEvent.value = Event(Unit)
     }
@@ -36,12 +41,13 @@ class BookmarkListViewModel(private val _bookmarkRepository: BookmarkRepository)
         _editBookmarkEvent.value = Event(bookmark)
     }
 
-    fun open(bookmark: Bookmark) {
-        _openBookmarkEvent.value = Event(bookmark)
+    fun longClick(bookmark: Bookmark) {
+        // TODO: setting
+        edit(bookmark)
     }
 
-    fun openMenu(bookmark: Bookmark) {
-        _editBookmarkEvent.value = Event(bookmark)
+    fun open(bookmark: Bookmark) {
+        _openBookmarkEvent.value = Event(bookmark)
     }
 
     fun refresh() = viewModelScope.launch {

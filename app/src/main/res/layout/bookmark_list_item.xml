@@ -10,24 +10,24 @@
             type="net.bouzuya.shiori.data.Bookmark" />
 
         <variable
-            name="onClickBookmarkListener"
-            type="net.bouzuya.shiori.OnClickBookmarkListener" />
+            name="onClickListener"
+            type="android.view.View.OnClickListener" />
 
         <variable
-            name="onClickBookmarkMenuListener"
-            type="net.bouzuya.shiori.OnClickBookmarkListener" />
+            name="onClickMenuListener"
+            type="android.view.View.OnClickListener" />
 
         <variable
-            name="onLongClickBookmarkListener"
-            type="net.bouzuya.shiori.OnLongClickBookmarkListener" />
+            name="onLongClickListener"
+            type="android.view.View.OnLongClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="72dp"
-        android:onClick="@{() -> onClickBookmarkListener.onClick(bookmark)}"
+        android:onClick="@{onClickListener}"
         android:orientation="horizontal"
-        app:onLongClick="@{() -> onLongClickBookmarkListener.onLongClick(bookmark)}">
+        app:onLongClick="@{onLongClickListener}">
 
         <TextView
             android:id="@+id/bookmark_list_item_name"
@@ -84,7 +84,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
             android:contentDescription="@string/bookmark_list_item_more"
-            android:onClick="@{() -> onClickBookmarkMenuListener.onClick(bookmark)}"
+            android:onClick="@{onClickMenuListener}"
             android:src="@drawable/ic_more_vert_black_24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

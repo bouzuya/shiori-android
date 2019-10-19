@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.PopupMenu
 import androidx.core.widget.doAfterTextChanged
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,21 +30,19 @@ interface OnClickBookmarkListener {
     fun onClick(bookmark: Bookmark)
 }
 
-interface OnLongClickBookmarkListener {
-    fun onLongClick(bookmark: Bookmark)
-}
-
 @BindingAdapter(
     "bookmarkList",
     "onClickBookmarkListener",
-    "onClickBookmarkMenuListener",
-    "onLongClickBookmarkListener"
+    "onEditBookmarkListener",
+    "onLongClickBookmarkListener",
+    "onOpenBookmarkListener"
 )
 fun RecyclerView.setBookmarkList(
     bookmarkList: List<Bookmark>?,
     onClickBookmarkListener: OnClickBookmarkListener?,
-    onClickBookmarkMenuListener: OnClickBookmarkListener?,
-    onLongClickBookmarkListener: OnLongClickBookmarkListener?
+    onEditBookmarkListener: OnClickBookmarkListener?,
+    onLongClickBookmarkListener: OnClickBookmarkListener?,
+    onOpenBookmarkListener: OnClickBookmarkListener?
 ) {
     val itemList = bookmarkList ?: emptyList()
 
@@ -67,10 +66,34 @@ fun RecyclerView.setBookmarkList(
         }
 
         override fun onBindViewHolder(holder: BindingViewHolder, position: Int) {
-            holder.binding.bookmark = itemList[position]
-            holder.binding.onClickBookmarkListener = onClickBookmarkListener
-            holder.binding.onClickBookmarkMenuListener = onClickBookmarkMenuListener
-            holder.binding.onLongClickBookmarkListener = onLongClickBookmarkListener
+            val bookmark = itemList[position]
+            holder.binding.bookmark = bookmark
+            holder.binding.onClickListener = View.OnClickListener {
+                onClickBookmarkListener?.onClick(bookmark)
+            }
+            holder.binding.onClickMenuListener = View.OnClickListener { v ->
+                PopupMenu(context, v).also { popup ->
+                    popup.menuInflater.inflate(R.menu.bookmark_popup, popup.menu)
+                    popup.setOnMenuItemClickListener { item ->
+                        when (item.itemId) {
+                            R.id.bookmark_edit -> {
+                                onEditBookmarkListener?.onClick(bookmark)
+                                true
+                            }
+                            R.id.bookmark_open -> {
+                                onOpenBookmarkListener?.onClick(bookmark)
+                                true
+                            }
+                            else -> false
+                        }
+                    }
+                    popup.show()
+                }
+            }
+            holder.binding.onLongClickListener = View.OnLongClickListener {
+                onLongClickBookmarkListener?.onClick(bookmark)
+                true
+            }
         }
     }
 }
@@ -118,11 +141,17 @@ fun RecyclerView.setTagList(
     }
 }
 
+
+@BindingAdapter("onLongClick")
+fun View.setOnLongClickListenerAdapter(onLongClickListener: View.OnLongClickListener) {
+    setOnLongClickListener(onLongClickListener)
+}
+
 interface OnLongClickListener {
     fun onLongClick()
 }
 
-@BindingAdapter("onLongClick")
+@BindingAdapter("onLongClick2")
 fun View.setMyOnLongClickListener(onLongClickListener: OnLongClickListener) {
     setOnLongClickListener {
         onLongClickListener.onLongClick()
