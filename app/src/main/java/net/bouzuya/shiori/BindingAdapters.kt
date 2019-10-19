@@ -33,10 +33,16 @@ interface OnLongClickBookmarkListener {
     fun onLongClick(bookmark: Bookmark)
 }
 
-@BindingAdapter("bookmarkList", "onClickBookmarkListener", "onLongClickBookmarkListener")
+@BindingAdapter(
+    "bookmarkList",
+    "onClickBookmarkListener",
+    "onClickBookmarkMenuListener",
+    "onLongClickBookmarkListener"
+)
 fun RecyclerView.setBookmarkList(
     bookmarkList: List<Bookmark>?,
     onClickBookmarkListener: OnClickBookmarkListener?,
+    onClickBookmarkMenuListener: OnClickBookmarkListener?,
     onLongClickBookmarkListener: OnLongClickBookmarkListener?
 ) {
     val itemList = bookmarkList ?: emptyList()
@@ -63,6 +69,7 @@ fun RecyclerView.setBookmarkList(
         override fun onBindViewHolder(holder: BindingViewHolder, position: Int) {
             holder.binding.bookmark = itemList[position]
             holder.binding.onClickBookmarkListener = onClickBookmarkListener
+            holder.binding.onClickBookmarkMenuListener = onClickBookmarkMenuListener
             holder.binding.onLongClickBookmarkListener = onLongClickBookmarkListener
         }
     }

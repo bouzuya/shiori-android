@@ -40,6 +40,10 @@ class BookmarkListViewModel(private val _bookmarkRepository: BookmarkRepository)
         _openBookmarkEvent.value = Event(bookmark)
     }
 
+    fun openMenu(bookmark: Bookmark) {
+        _editBookmarkEvent.value = Event(bookmark)
+    }
+
     fun refresh() = viewModelScope.launch {
         refreshList()
     }

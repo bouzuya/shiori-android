@@ -14,13 +14,17 @@
             type="net.bouzuya.shiori.OnClickBookmarkListener" />
 
         <variable
+            name="onClickBookmarkMenuListener"
+            type="net.bouzuya.shiori.OnClickBookmarkListener" />
+
+        <variable
             name="onLongClickBookmarkListener"
             type="net.bouzuya.shiori.OnLongClickBookmarkListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="72dp"
         android:onClick="@{() -> onClickBookmarkListener.onClick(bookmark)}"
         android:orientation="horizontal"
         app:onLongClick="@{() -> onLongClickBookmarkListener.onLongClick(bookmark)}">
@@ -30,7 +34,7 @@
             android:layout_width="0dp"
             android:layout_height="24dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="14dp"
             android:ellipsize="end"
             android:gravity="bottom"
             android:maxLines="1"
@@ -53,7 +57,7 @@
             android:maxLines="1"
             android:text="@{bookmark.url}"
             android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/bookmark_list_item_more"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/bookmark_list_item_name"
             tools:text="http://example.com" />
@@ -63,13 +67,26 @@
             android:layout_width="wrap_content"
             android:layout_height="24dp"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="14dp"
             android:layout_marginEnd="16dp"
             android:gravity="bottom|end"
             android:text="@{bookmark.createdAt}"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/bookmark_list_item_more"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="2019-01-02T15:16:17Z" />
+
+        <ImageView
+            android:id="@+id/bookmark_list_item_more"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/bookmark_list_item_more"
+            android:onClick="@{() -> onClickBookmarkMenuListener.onClick(bookmark)}"
+            android:src="@drawable/ic_more_vert_black_24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
