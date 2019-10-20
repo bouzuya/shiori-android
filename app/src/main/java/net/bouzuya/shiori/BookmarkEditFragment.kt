@@ -22,7 +22,8 @@ class BookmarkEditFragment : DialogFragment() {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 return BookmarkEditViewModel(
                     mainViewModel.bookmarkRepository,
-                    args.bookmarkId
+                    args.bookmarkId,
+                    mainViewModel.tagRepository
                 ) as T
             }
         }

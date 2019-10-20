@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import net.bouzuya.shiori.data.Bookmark
 import net.bouzuya.shiori.data.BookmarkAction
 import net.bouzuya.shiori.data.Tag
+import net.bouzuya.shiori.databinding.BookmarkEditTagListItemBinding
 import net.bouzuya.shiori.databinding.BookmarkListItemBinding
 import net.bouzuya.shiori.databinding.TagListItemBinding
 
@@ -80,6 +81,45 @@ fun RecyclerView.setBookmarkList(
             holder.binding.onLongClickListener = View.OnLongClickListener {
                 onLongClickBookmarkListener?.onClick(bookmark)
                 true
+            }
+        }
+    }
+}
+
+@BindingAdapter("bookmarkEditTagList", "bookmarkEditCheckedTagList", "onClickTagCheckListener")
+fun RecyclerView.setBookmarkEditTagList(
+    tagList: List<Tag>?,
+    checkedTagList: List<Tag>?,
+    onClickTagCheckListener: OnClickTagListener
+) {
+    val itemList = tagList ?: emptyList()
+    val checkedItemList = checkedTagList ?: emptyList()
+
+    class BindingViewHolder(val binding: BookmarkEditTagListItemBinding) :
+        RecyclerView.ViewHolder(binding.root)
+
+    layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+    adapter = object : RecyclerView.Adapter<BindingViewHolder>() {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingViewHolder {
+            return BindingViewHolder(
+                BookmarkEditTagListItemBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+            )
+        }
+
+        override fun getItemCount(): Int {
+            return itemList.size
+        }
+
+        override fun onBindViewHolder(holder: BindingViewHolder, position: Int) {
+            val tag = itemList[position]
+            holder.binding.tag = tag
+            holder.binding.checked = checkedItemList.contains(tag)
+            holder.binding.onClick = View.OnClickListener {
+                onClickTagCheckListener.onClick(tag)
             }
         }
     }

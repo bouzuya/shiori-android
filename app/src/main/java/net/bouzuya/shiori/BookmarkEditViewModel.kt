@@ -5,16 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import net.bouzuya.shiori.data.Bookmark
-import net.bouzuya.shiori.data.BookmarkRepository
-import net.bouzuya.shiori.data.BookmarkWithTagList
+import net.bouzuya.shiori.data.*
 import org.threeten.bp.Instant
 import org.threeten.bp.ZoneOffset
 import org.threeten.bp.format.DateTimeFormatter
 
 class BookmarkEditViewModel(
     private val _bookmarkRepository: BookmarkRepository,
-    private val _bookmarkId: Long
+    private val _bookmarkId: Long,
+    private val _tagRepository: TagRepository
 ) : ViewModel() {
     private val _cancelEvent = MutableLiveData<Event<Unit>>()
     val cancelEvent: LiveData<Event<Unit>> = _cancelEvent
@@ -26,16 +25,32 @@ class BookmarkEditViewModel(
 
     val urlText = MutableLiveData<String>()
 
+    private val _allTagList = MutableLiveData<List<Tag>>()
+    val allTagList: LiveData<List<Tag>> = _allTagList
+
+    private val _bookmarkTagList = MutableLiveData<List<Tag>>()
+    val bookmarkTagList: LiveData<List<Tag>> = _bookmarkTagList
+
     init {
         viewModelScope.launch {
+            _allTagList.value = _tagRepository.findAll()
             (if (_bookmarkId == 0L) null else _bookmarkRepository.findById(_bookmarkId))?.let { bookmarkWithTagList ->
                 val bookmark = bookmarkWithTagList.bookmark
                 nameText.value = bookmark.name
                 urlText.value = bookmark.url
+                _bookmarkTagList.value = bookmarkWithTagList.tagList
             } ?: {
                 nameText.value = ""
                 urlText.value = ""
             }()
+        }
+    }
+
+    fun checked(tag: Tag) {
+        _bookmarkTagList.value?.also { tagList ->
+            _bookmarkTagList.value =
+                if (tagList.contains(tag)) tagList.minus(tag)
+                else tagList.plus(tag)
         }
     }
 
@@ -46,25 +61,28 @@ class BookmarkEditViewModel(
     fun ok() = viewModelScope.launch {
         nameText.value?.also { name ->
             urlText.value?.also { url ->
-                if (_bookmarkId == 0L) {
-                    val createdAt = Instant.now().atZone(ZoneOffset.UTC).toOffsetDateTime()
-                        .format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
-                    val bookmark = Bookmark(0, name, url, createdAt)
-                    _bookmarkRepository.insert(BookmarkWithTagList(bookmark, emptyList()))
-                } else {
-                    _bookmarkRepository.findById(_bookmarkId)?.also { bookmarkWithTagList ->
-                        val bookmark = bookmarkWithTagList.bookmark
-                        _bookmarkRepository.update(
-                            BookmarkWithTagList(
-                                Bookmark(
-                                    bookmark.id,
-                                    name,
-                                    url,
-                                    bookmark.createdAt
-                                ),
-                                emptyList()
+                _bookmarkTagList.value?.also { tagList ->
+                    if (_bookmarkId == 0L) {
+                        val createdAt = Instant.now().atZone(ZoneOffset.UTC).toOffsetDateTime()
+                            .format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+                        val bookmark = Bookmark(0, name, url, createdAt)
+                        _bookmarkRepository.insert(BookmarkWithTagList(bookmark, tagList))
+                    } else {
+                        _bookmarkRepository.findById(_bookmarkId)?.also { bookmarkWithTagList ->
+
+                            val bookmark = bookmarkWithTagList.bookmark
+                            _bookmarkRepository.update(
+                                BookmarkWithTagList(
+                                    Bookmark(
+                                        bookmark.id,
+                                        name,
+                                        url,
+                                        bookmark.createdAt
+                                    ),
+                                    tagList
+                                )
                             )
-                        )
+                        }
                     }
                 }
             }
