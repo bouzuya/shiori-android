@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import net.bouzuya.shiori.data.Bookmark
 import net.bouzuya.shiori.data.BookmarkRepository
+import net.bouzuya.shiori.data.BookmarkWithTagList
 import org.threeten.bp.Instant
 import org.threeten.bp.ZoneOffset
 import org.threeten.bp.format.DateTimeFormatter
@@ -27,7 +28,8 @@ class BookmarkEditViewModel(
 
     init {
         viewModelScope.launch {
-            (if (_bookmarkId == 0L) null else _bookmarkRepository.findById(_bookmarkId))?.let { bookmark ->
+            (if (_bookmarkId == 0L) null else _bookmarkRepository.findById(_bookmarkId))?.let { bookmarkWithTagList ->
+                val bookmark = bookmarkWithTagList.bookmark
                 nameText.value = bookmark.name
                 urlText.value = bookmark.url
             } ?: {
@@ -48,15 +50,19 @@ class BookmarkEditViewModel(
                     val createdAt = Instant.now().atZone(ZoneOffset.UTC).toOffsetDateTime()
                         .format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
                     val bookmark = Bookmark(0, name, url, createdAt)
-                    _bookmarkRepository.insert(bookmark)
+                    _bookmarkRepository.insert(BookmarkWithTagList(bookmark, emptyList()))
                 } else {
-                    _bookmarkRepository.findById(_bookmarkId)?.also { bookmark ->
+                    _bookmarkRepository.findById(_bookmarkId)?.also { bookmarkWithTagList ->
+                        val bookmark = bookmarkWithTagList.bookmark
                         _bookmarkRepository.update(
-                            Bookmark(
-                                bookmark.id,
-                                name,
-                                url,
-                                bookmark.createdAt
+                            BookmarkWithTagList(
+                                Bookmark(
+                                    bookmark.id,
+                                    name,
+                                    url,
+                                    bookmark.createdAt
+                                ),
+                                emptyList()
                             )
                         )
                     }

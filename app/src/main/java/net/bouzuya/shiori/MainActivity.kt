@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 val database = BookmarkDatabase.getDatabase(applicationContext)
                 return MainViewModel(
-                    BookmarkRepository(database.bookmarkDao()),
+                    BookmarkRepository(database.bookmarkDao(), database.bookmarkTagJoinDao()),
                     TagRepository(database.tagDao())
                 ) as T
             }

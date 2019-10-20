@@ -1,18 +1,17 @@
 package net.bouzuya.shiori
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import net.bouzuya.shiori.data.Bookmark
 import net.bouzuya.shiori.data.BookmarkAction
 import net.bouzuya.shiori.data.BookmarkRepository
+import net.bouzuya.shiori.data.BookmarkWithTagList
 
 class BookmarkListViewModel(private val _bookmarkRepository: BookmarkRepository) : ViewModel() {
 
-    private val _bookmarkList = MutableLiveData<List<Bookmark>>()
-    val bookmarkList: LiveData<List<Bookmark>> = _bookmarkList
+    private val _bookmarkWithTagListList = MutableLiveData<List<BookmarkWithTagList>>()
+    val bookmarkList: LiveData<List<Bookmark>> =
+        Transformations.map(_bookmarkWithTagListList) { bookmarkWithTagListList -> bookmarkWithTagListList.map { it.bookmark } }
 
     private val _bookmarkActionEvent = MutableLiveData<Event<Pair<BookmarkAction, Bookmark>>>()
     val bookmarkActionEvent: LiveData<Event<Pair<BookmarkAction, Bookmark>>> = _bookmarkActionEvent
@@ -49,6 +48,6 @@ class BookmarkListViewModel(private val _bookmarkRepository: BookmarkRepository)
     }
 
     private suspend fun refreshList() {
-        _bookmarkList.value = _bookmarkRepository.findAll()
+        _bookmarkWithTagListList.value = _bookmarkRepository.findAll()
     }
 }
