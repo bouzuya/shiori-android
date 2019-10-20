@@ -21,7 +21,7 @@ import androidx.room.ForeignKey
         )
     ]
 )
-data class BookmarkTag(
+data class BookmarkTagJoin(
     @ColumnInfo(name = "bookmark_id")
     val bookmarkId: Long,
 

@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(
-    entities = [Bookmark::class, BookmarkTag::class, Tag::class],
+    entities = [Bookmark::class, BookmarkTagJoin::class, Tag::class],
     version = BookmarkDatabase.version
 )
 abstract class BookmarkDatabase : RoomDatabase() {
