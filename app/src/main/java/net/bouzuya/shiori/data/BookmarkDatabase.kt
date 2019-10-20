@@ -12,6 +12,8 @@ import androidx.room.RoomDatabase
 abstract class BookmarkDatabase : RoomDatabase() {
     abstract fun bookmarkDao(): BookmarkDao
 
+    abstract fun bookmarkTagJoinDao(): BookmarkTagJoinDao
+
     abstract fun tagDao(): TagDao
 
     companion object {
