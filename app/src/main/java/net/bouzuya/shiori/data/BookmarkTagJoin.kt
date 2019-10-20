@@ -22,9 +22,9 @@ import androidx.room.ForeignKey
     ]
 )
 data class BookmarkTagJoin(
-    @ColumnInfo(name = "bookmark_id")
+    @ColumnInfo(name = "bookmark_id", index = true)
     val bookmarkId: Long,
 
-    @ColumnInfo(name = "tag_id")
+    @ColumnInfo(name = "tag_id", index = true)
     val tagId: Long
 )
