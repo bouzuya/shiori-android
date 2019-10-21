@@ -142,15 +142,11 @@ interface OnClickTagListener {
     fun onClick(tag: Tag)
 }
 
-interface OnLongClickTagListener {
-    fun onLongClick(tag: Tag)
-}
-
 @BindingAdapter("tagList", "onClickTagListener", "onLongClickTagListener")
 fun RecyclerView.setTagList(
     tagList: List<Tag>?,
     onClickTagListener: OnClickTagListener?,
-    onLongClickTagListener: OnLongClickTagListener?
+    onLongClickTagListener: OnClickTagListener?
 ) {
     val itemList = tagList ?: emptyList()
 
@@ -174,27 +170,20 @@ fun RecyclerView.setTagList(
         }
 
         override fun onBindViewHolder(holder: BindingViewHolder, position: Int) {
-            holder.binding.tag = itemList[position]
-            holder.binding.onClickTagListener = onClickTagListener
-            holder.binding.onLongClickTagListener = onLongClickTagListener
+            val tag = itemList[position]
+            holder.binding.tag = tag
+            holder.binding.onClick = View.OnClickListener {
+                onClickTagListener?.onClick(tag)
+            }
+            holder.binding.onLongClick = View.OnLongClickListener {
+                onLongClickTagListener?.onClick(tag)
+                true
+            }
         }
     }
 }
 
-
 @BindingAdapter("onLongClick")
 fun View.setOnLongClickListenerAdapter(onLongClickListener: View.OnLongClickListener) {
     setOnLongClickListener(onLongClickListener)
-}
-
-interface OnLongClickListener {
-    fun onLongClick()
-}
-
-@BindingAdapter("onLongClick2")
-fun View.setMyOnLongClickListener(onLongClickListener: OnLongClickListener) {
-    setOnLongClickListener {
-        onLongClickListener.onLongClick()
-        true
-    }
 }

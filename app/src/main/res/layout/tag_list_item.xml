@@ -10,12 +10,12 @@
             type="net.bouzuya.shiori.data.Tag" />
 
         <variable
-            name="onClickTagListener"
-            type="net.bouzuya.shiori.OnClickTagListener" />
+            name="onClick"
+            type="android.view.View.OnClickListener" />
 
         <variable
-            name="onLongClickTagListener"
-            type="net.bouzuya.shiori.OnLongClickTagListener" />
+            name="onLongClick"
+            type="android.view.View.OnLongClickListener" />
     </data>
 
     <LinearLayout
@@ -24,9 +24,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:gravity="center_vertical"
-        android:onClick="@{() -> onClickTagListener.onClick(tag)}"
+        android:onClick="@{onClick}"
         android:orientation="horizontal"
-        app:onLongClick2="@{() -> onLongClickTagListener.onLongClick(tag)}">
+        app:onLongClick="@{onLongClick}">
 
         <TextView
             android:layout_width="wrap_content"
