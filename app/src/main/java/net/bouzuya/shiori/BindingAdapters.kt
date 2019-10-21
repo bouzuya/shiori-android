@@ -92,14 +92,18 @@ fun RecyclerView.setBookmarkEditTagList(
     checkedTagList: List<Tag>?,
     onClickTagCheckListener: OnClickTagListener
 ) {
-    val itemList = tagList ?: emptyList()
-    val checkedItemList = checkedTagList ?: emptyList()
-
     class BindingViewHolder(val binding: BookmarkEditTagListItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-    adapter = object : RecyclerView.Adapter<BindingViewHolder>() {
+    class TagListAdapter : RecyclerView.Adapter<BindingViewHolder>() {
+        private var _dataSet: Pair<List<Tag>, List<Tag>> = Pair(emptyList(), emptyList())
+        var dataSet: Pair<List<Tag>, List<Tag>>
+            get() = _dataSet
+            set(values) {
+                _dataSet = values
+                notifyDataSetChanged()
+            }
+
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingViewHolder {
             return BindingViewHolder(
                 BookmarkEditTagListItemBinding.inflate(
@@ -111,18 +115,27 @@ fun RecyclerView.setBookmarkEditTagList(
         }
 
         override fun getItemCount(): Int {
-            return itemList.size
+            return _dataSet.first.size
         }
 
         override fun onBindViewHolder(holder: BindingViewHolder, position: Int) {
-            val tag = itemList[position]
+            val tag = dataSet.first[position]
             holder.binding.tag = tag
-            holder.binding.checked = checkedItemList.contains(tag)
+            holder.binding.checked = dataSet.second.contains(tag)
             holder.binding.onClick = View.OnClickListener {
                 onClickTagCheckListener.onClick(tag)
             }
         }
     }
+
+    if (adapter == null) {
+        layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        adapter = TagListAdapter()
+    }
+
+    val itemList = tagList ?: emptyList()
+    val checkedItemList = checkedTagList ?: emptyList()
+    (adapter as? TagListAdapter)?.dataSet = Pair(itemList, checkedItemList)
 }
 
 interface OnClickTagListener {
