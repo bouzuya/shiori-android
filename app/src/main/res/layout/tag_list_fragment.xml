@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="net.bouzuya.shiori.TagListViewModel" />
@@ -20,9 +22,17 @@
             android:orientation="vertical"
             tools:context=".TagListFragment">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/tag_list_empty_label"
+                android:visibility="@{viewModel.tagList.size() == 0 ? View.VISIBLE : View.GONE}" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:visibility="@{viewModel.tagList.size() == 0 ? View.GONE : View.VISIBLE}"
                 app:onClickTagListener="@{viewModel::open}"
                 app:onLongClickTagListener="@{viewModel::edit}"
                 app:tagList="@{viewModel.tagList}"

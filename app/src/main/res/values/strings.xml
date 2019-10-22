@@ -17,5 +17,6 @@
     <string name="setting_tag_count_label">Tag Count</string>
     <string name="setting_fragment_name">Settings</string>
     <string name="tag_edit_fragment_name">Tag Edit</string>
+    <string name="tag_list_empty_label">No tags</string>
     <string name="tag_list_fragment_name">Tag List</string>
 </resources>
