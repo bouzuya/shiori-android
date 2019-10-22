@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -48,12 +49,15 @@ class BookmarkListFragment : Fragment() {
 
             viewModel.bookmarkActionEvent.observe(this, EventObserver { (action, bookmark) ->
                 when (action) {
-                    BookmarkAction.Open -> startActivity(
-                        Intent(
-                            Intent.ACTION_VIEW,
-                            Uri.parse(bookmark.url)
-                        )
-                    )
+                    BookmarkAction.Open -> activity?.packageManager?.let { packageManager ->
+                        Intent(Intent.ACTION_VIEW, Uri.parse(bookmark.url)).let { intent ->
+                            intent.resolveActivity(packageManager)?.also {
+                                startActivity(intent)
+                            }
+                        }
+                    } ?: Toast.makeText(
+                        context, "The url can't be opened", Toast.LENGTH_LONG
+                    ).show()
                     BookmarkAction.Edit -> findNavController().navigate(
                         actionBookmarkListFragmentToBookmarkEditFragment(
                             bookmark.id
