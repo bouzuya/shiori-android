@@ -3,6 +3,7 @@
     <string name="bookmark_edit_fragment_name">Bookmark Edit</string>
     <string name="bookmark_edit_tag_label">Tag List</string>
     <string name="bookmark_edit_url_label">URL</string>
+    <string name="bookmark_list_create_label">Create bookmark</string>
     <string name="bookmark_list_empty_label">No bookmarks</string>
     <string name="bookmark_list_fragment_name">Bookmark List</string>
     <string name="bookmark_list_item_more">more</string>
