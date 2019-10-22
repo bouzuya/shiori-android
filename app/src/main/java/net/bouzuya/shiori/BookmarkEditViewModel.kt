@@ -28,7 +28,7 @@ class BookmarkEditViewModel(
     private val _allTagList = MutableLiveData<List<Tag>>()
     val allTagList: LiveData<List<Tag>> = _allTagList
 
-    private val _bookmarkTagList = MutableLiveData<List<Tag>>()
+    private val _bookmarkTagList = MutableLiveData<List<Tag>>(emptyList())
     val bookmarkTagList: LiveData<List<Tag>> = _bookmarkTagList
 
     init {
