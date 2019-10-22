@@ -20,7 +20,7 @@ interface BookmarkDao {
     suspend fun findById(id: Long): List<Bookmark>
 
     @Insert
-    suspend fun insert(bookmark: Bookmark)
+    suspend fun insert(bookmark: Bookmark): Long
 
     @Update
     suspend fun update(bookmark: Bookmark)

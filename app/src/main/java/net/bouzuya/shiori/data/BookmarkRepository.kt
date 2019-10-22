@@ -23,9 +23,9 @@ class BookmarkRepository(
         }
 
     suspend fun insert(bookmarkWithTagList: BookmarkWithTagList) {
-        _bookmarkDao.insert(bookmarkWithTagList.bookmark)
+        val bookmarkId = _bookmarkDao.insert(bookmarkWithTagList.bookmark)
         bookmarkWithTagList.tagList.forEach { tag ->
-            _bookmarkTagJoinDao.insert(BookmarkTagJoin(bookmarkWithTagList.bookmark.id, tag.id))
+            _bookmarkTagJoinDao.insert(BookmarkTagJoin(bookmarkId, tag.id))
         }
     }
 
