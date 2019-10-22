@@ -18,45 +18,41 @@
             type="android.view.View.OnLongClickListener" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="48dp"
         android:gravity="center_vertical"
         android:onClick="@{onClick}"
         android:orientation="horizontal"
         app:onLongClick="@{onLongClick}">
 
         <TextView
+            android:layout_width="0dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:ellipsize="end"
+            android:gravity="bottom"
+            android:text="@{tag.name}"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/tag_list_item_date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="rust" />
+
+        <TextView
+            android:id="@+id/tag_list_item_date"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="@{String.valueOf(tag.id)}"
-            tools:text="1" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="@{tag.name}"
-                tools:text="rust" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:gravity="end"
-                android:text="@{tag.createdAt}"
-                tools:text="2019-01-02T15:16:17Z" />
-        </LinearLayout>
-    </LinearLayout>
+            android:layout_height="24dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="bottom|end"
+            android:text="@{tag.createdAt}"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="2019-01-02T15:16:17Z" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
