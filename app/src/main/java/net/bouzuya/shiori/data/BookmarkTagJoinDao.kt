@@ -7,6 +7,9 @@ import androidx.room.Query
 @Dao
 interface BookmarkTagJoinDao {
 
+    @Query("DELETE FROM bookmarks_tags")
+    suspend fun deleteAll()
+
     @Query(
         """
            DELETE FROM bookmarks_tags

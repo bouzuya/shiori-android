@@ -6,7 +6,10 @@ class BookmarkRepository(
 ) {
     suspend fun countAll(): Int = _bookmarkDao.countAll()
 
-    suspend fun deleteAll(): Unit = _bookmarkDao.deleteAll()
+    suspend fun deleteAll() {
+        _bookmarkTagJoinDao.deleteAll()
+        _bookmarkDao.deleteAll()
+    }
 
     // TODO: N+1
     suspend fun findAll(): List<BookmarkWithTagList> =
