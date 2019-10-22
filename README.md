@@ -1,6 +1,6 @@
 # shiori-android
 
-![](https://user-images.githubusercontent.com/1221346/67254841-3dd56380-f4ba-11e9-8abc-b3e5b6e56b37.png)
+![](https://user-images.githubusercontent.com/1221346/67259163-6f0c5e80-f4cf-11e9-998e-ad60562d0e52.png)
 
 "shiori" is a simple bookmark android app.
 

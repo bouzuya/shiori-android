@@ -16,7 +16,7 @@
    version="1.1"
    inkscape:version="0.91 r13725"
    sodipodi:docname="shiori.svg"
-   inkscape:export-filename="/Users/bouzuya/Desktop/shiori.png"
+   inkscape:export-filename="/Users/bouzuya/Desktop/shiori-512x512.png"
    inkscape:export-xdpi="11.25"
    inkscape:export-ydpi="11.25">
   <defs
@@ -29,8 +29,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.12374369"
-     inkscape:cx="1680.9235"
-     inkscape:cy="2070.6432"
+     inkscape:cx="71.383921"
+     inkscape:cy="2144.739"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -63,7 +63,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -82,6 +82,19 @@
        y="-4.9999999e-06" />
   </g>
   <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="safearea"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <circle
+       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#ffff00;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path8072"
+       cx="2048"
+       cy="2048"
+       r="1251.5" />
+  </g>
+  <g
      inkscape:label="foreground"
      inkscape:groupmode="layer"
      id="layer1"
@@ -90,8 +103,9 @@
      sodipodi:insensitive="true">
     <path
        style="opacity:1;fill:#f4f7f2;fill-opacity:1;fill-rule:nonzero;stroke:#ffff00;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 1280,-2147.6378 0,2560 a 768,768 0 0 1 768,-768 768,768 0 0 1 768,768 l 0,-2560 -1536,0 z"
-       id="rect8076"
+       d="m 1536,1152 0,1920 a 512,512 0 0 1 512,-512 512,512 0 0 1 512,512 l 0,-1920 -1024,0 z"
+       transform="translate(0,-3043.6378)"
+       id="rect8074"
        inkscape:connector-curvature="0" />
   </g>
 </svg>
