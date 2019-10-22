@@ -11,8 +11,8 @@ android {
         applicationId "net.bouzuya.shiori"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 9
-        versionName "0.9.0"
+        versionCode 10
+        versionName "0.9.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         javaCompileOptions {
             annotationProcessorOptions {
