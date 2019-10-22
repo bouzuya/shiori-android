@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="net.bouzuya.shiori.BookmarkListViewModel" />
@@ -15,9 +17,17 @@
         android:layout_height="match_parent"
         tools:context=".BookmarkListFragment">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/bookmark_list_empty_label"
+            android:visibility="@{viewModel.bookmarkList.size() == 0 ? View.VISIBLE : View.GONE}" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:visibility="@{viewModel.bookmarkList.size() == 0 ? View.GONE : View.VISIBLE}"
             app:bookmarkList="@{viewModel.bookmarkList}"
             app:onBookmarkActionListener="@{viewModel::handleAction}"
             app:onClickBookmarkListener="@{viewModel::click}"
