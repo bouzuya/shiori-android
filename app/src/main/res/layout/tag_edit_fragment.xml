@@ -26,9 +26,12 @@
         <EditText
             android:id="@+id/tagEditNameEdit"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
+            android:gravity="start|center_vertical"
             android:inputType="text"
+            android:padding="12dp"
             android:text="@={viewModel.nameText}"
+            android:textSize="16sp"
             tools:ignore="Autofill" />
 
         <LinearLayout
