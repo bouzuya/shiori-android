@@ -27,9 +27,12 @@
         <EditText
             android:id="@+id/editNameEdit"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
+            android:gravity="start|center_vertical"
             android:inputType="text"
+            android:padding="12dp"
             android:text="@={viewModel.nameText}"
+            android:textSize="16sp"
             tools:ignore="Autofill" />
 
         <TextView
@@ -41,9 +44,12 @@
         <EditText
             android:id="@+id/editUrlEdit"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
+            android:gravity="start|center_vertical"
             android:inputType="textUri"
+            android:padding="12dp"
             android:text="@={viewModel.urlText}"
+            android:textSize="16sp"
             tools:ignore="Autofill" />
 
         <TextView
@@ -58,8 +64,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:bookmarkEditTagList="@{viewModel.allTagList}"
                 app:bookmarkEditCheckedTagList="@{viewModel.bookmarkTagList}"
+                app:bookmarkEditTagList="@{viewModel.allTagList}"
                 app:onClickTagCheckListener="@{viewModel::checked}"
                 tools:itemCount="3"
                 tools:listitem="@layout/bookmark_edit_tag_list_item" />
