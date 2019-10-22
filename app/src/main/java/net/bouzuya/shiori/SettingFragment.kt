@@ -37,6 +37,11 @@ class SettingFragment : Fragment() {
         return SettingFragmentBinding.inflate(inflater, container, false).also { binding ->
             binding.lifecycleOwner = this
             binding.viewModel = viewModel
+
+            viewModel.deleteCompletedEvent.observe(this, EventObserver {
+                // workaround for reloading bookmark / tag list view
+                mainViewModel.editResult(true)
+            })
         }.root
     }
 }

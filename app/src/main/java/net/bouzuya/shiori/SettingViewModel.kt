@@ -16,6 +16,9 @@ class SettingViewModel(
 
     val databaseVersion: String = databaseVersionNumber.toString()
 
+    private val _deleteCompletedEvent = MutableLiveData<Event<Unit>>()
+    val deleteCompletedEvent: LiveData<Event<Unit>> = _deleteCompletedEvent
+
     private val _tagCount = MutableLiveData<Int>()
     val tagCount: LiveData<String> = Transformations.map(_tagCount) { it.toString() }
 
@@ -26,6 +29,7 @@ class SettingViewModel(
     fun deleteAll() = viewModelScope.launch {
         _bookmarkRepository.deleteAll()
         _tagRepository.deleteAll()
+        _deleteCompletedEvent.value = Event(Unit)
 
         refresh()
     }
