@@ -20,7 +20,7 @@ interface TagDao {
     suspend fun findById(id: Long): List<Tag>
 
     @Insert
-    suspend fun insert(tag: Tag)
+    suspend fun insert(tag: Tag): Long
 
     @Update
     suspend fun update(tag: Tag)
