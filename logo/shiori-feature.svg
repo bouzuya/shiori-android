@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="8192"
+   height="4096"
+   viewBox="0 0 8192.0002 4096.0001"
+   id="svg8074"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="shiori-feature.svg"
+   inkscape:export-filename="/Users/bouzuya/Desktop/shiori.png"
+   inkscape:export-xdpi="11.25"
+   inkscape:export-ydpi="11.25">
+  <defs
+     id="defs8076" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.061871845"
+     inkscape:cx="3236.5584"
+     inkscape:cy="2070.6432"
+     inkscape:document-units="px"
+     inkscape:current-layer="svg8074"
+     showgrid="true"
+     units="px"
+     inkscape:window-width="1362"
+     inkscape:window-height="724"
+     inkscape:window-x="102"
+     inkscape:window-y="19"
+     inkscape:window-maximized="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid12554"
+       spacingx="1"
+       spacingy="1"
+       empspacing="16" />
+    <inkscape:grid
+       type="xygrid"
+       id="grid12558"
+       empspacing="512" />
+    <inkscape:grid
+       type="xygrid"
+       id="grid12560"
+       empspacing="128" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata8079">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="background"
+     style="display:inline">
+    <rect
+       style="opacity:1;fill:#4e6a41;fill-opacity:1;fill-rule:nonzero;stroke:#ffff00;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect8103"
+       width="9192"
+       height="4096"
+       x="7.4902277e-06"
+       y="-2.509772e-06" />
+  </g>
+  <g
+     inkscape:label="foreground"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,3043.6378)"
+     style="display:inline">
+    <path
+       style="opacity:1;fill:#f4f7f2;fill-opacity:1;fill-rule:nonzero;stroke:#ffff00;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 3828,-2147.6378 0,2560 a 768,768 0 0 1 768,-768 768,768 0 0 1 768,768 l 0,-2560 -1536,0 z"
+       id="rect8076"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>
