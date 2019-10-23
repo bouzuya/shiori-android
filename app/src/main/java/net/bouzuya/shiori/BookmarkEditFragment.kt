@@ -23,6 +23,8 @@ class BookmarkEditFragment : DialogFragment() {
                 return BookmarkEditViewModel(
                     mainViewModel.bookmarkRepository,
                     args.bookmarkId,
+                    args.name,
+                    args.url,
                     mainViewModel.tagRepository
                 ) as T
             }

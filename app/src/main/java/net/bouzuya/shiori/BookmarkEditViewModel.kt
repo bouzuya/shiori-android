@@ -13,6 +13,8 @@ import org.threeten.bp.format.DateTimeFormatter
 class BookmarkEditViewModel(
     private val _bookmarkRepository: BookmarkRepository,
     private val _bookmarkId: Long,
+    private val _defaultBookmarkName: String?,
+    private val _defaultBookmarkUrl: String?,
     private val _tagRepository: TagRepository
 ) : ViewModel() {
     private val _cancelEvent = MutableLiveData<Event<Unit>>()
@@ -40,8 +42,8 @@ class BookmarkEditViewModel(
                 urlText.value = bookmark.url
                 _bookmarkTagList.value = bookmarkWithTagList.tagList
             } ?: {
-                nameText.value = ""
-                urlText.value = ""
+                nameText.value = _defaultBookmarkName ?: ""
+                urlText.value = _defaultBookmarkUrl ?: ""
             }()
         }
     }
