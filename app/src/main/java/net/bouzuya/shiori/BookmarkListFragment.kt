@@ -44,7 +44,11 @@ class BookmarkListFragment : Fragment() {
             })
 
             viewModel.createBookmarkEvent.observe(this, EventObserver {
-                findNavController().navigate(actionBookmarkListFragmentToBookmarkEditFragment(0))
+                findNavController().navigate(
+                    actionBookmarkListFragmentToBookmarkEditFragment(
+                        0L, null, null
+                    )
+                )
             })
 
             viewModel.bookmarkActionEvent.observe(this, EventObserver { (action, bookmark) ->
@@ -60,7 +64,7 @@ class BookmarkListFragment : Fragment() {
                     ).show()
                     BookmarkAction.Edit -> findNavController().navigate(
                         actionBookmarkListFragmentToBookmarkEditFragment(
-                            bookmark.id
+                            bookmark.id, null, null
                         )
                     )
                     BookmarkAction.Share -> startActivity(

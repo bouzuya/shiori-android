@@ -20,6 +20,14 @@
         <argument
             android:name="bookmarkId"
             app:argType="long" />
+        <argument
+            android:name="name"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="url"
+            app:argType="string"
+            app:nullable="true" />
     </dialog>
 
     <fragment
