@@ -44,7 +44,11 @@ class MainActivity : AppCompatActivity() {
                     toolbar.setupWithNavController(
                         findNavController(),
                         AppBarConfiguration(
-                            setOf(R.id.bookmark_list_fragment, R.id.tag_list_fragment),
+                            setOf(
+                                R.id.bookmark_list_fragment,
+                                R.id.tag_list_fragment,
+                                R.id.setting_fragment
+                            ),
                             binding.mainDrawerLayout
                         )
                     )
