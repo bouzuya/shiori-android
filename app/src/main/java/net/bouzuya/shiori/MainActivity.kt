@@ -1,5 +1,6 @@
 package net.bouzuya.shiori
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import net.bouzuya.shiori.MainNavGraphDirections.Companion.actionGlobalBookmarkEditFragment
 import net.bouzuya.shiori.data.BookmarkDatabase
 import net.bouzuya.shiori.data.BookmarkRepository
 import net.bouzuya.shiori.data.TagRepository
@@ -48,6 +50,20 @@ class MainActivity : AppCompatActivity() {
                     )
                 }
                 binding.mainNavigationView.setupWithNavController(findNavController())
+
+                val receivedData: Pair<String, String>? = intent?.let { intent ->
+                    if (intent.type != "text/plain") null
+                    else intent.getStringExtra(Intent.EXTRA_TEXT)?.let { url ->
+                        val title = intent.getStringExtra(Intent.EXTRA_SUBJECT) ?: ""
+                        // title is nullable (use empty string if title is null)
+                        // url is non nullable
+                        Pair(title, url)
+                    }
+                }
+                if (receivedData != null && findNavController().currentDestination?.id != R.id.bookmark_edit_fragment) {
+                    val (title, url) = receivedData
+                    findNavController().navigate(actionGlobalBookmarkEditFragment(0L, title, url))
+                }
             }
     }
 

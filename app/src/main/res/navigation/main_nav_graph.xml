@@ -51,4 +51,7 @@
         android:id="@+id/setting_fragment"
         android:name="net.bouzuya.shiori.SettingFragment"
         android:label="@string/setting_fragment_name" />
+    <action
+        android:id="@+id/action_global_bookmark_edit_fragment"
+        app:destination="@id/bookmark_edit_fragment" />
 </navigation>
