@@ -1,9 +1,9 @@
 package net.bouzuya.shiori
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -51,18 +51,24 @@ class MainActivity : AppCompatActivity() {
                 }
                 binding.mainNavigationView.setupWithNavController(findNavController())
 
-                val receivedData: Pair<String, String>? = intent?.let { intent ->
-                    if (intent.type != "text/plain") null
-                    else intent.getStringExtra(Intent.EXTRA_TEXT)?.let { url ->
-                        val title = intent.getStringExtra(Intent.EXTRA_SUBJECT) ?: ""
+                ShareCompat.IntentReader.from(this)?.let { intentReader ->
+                    if (intentReader.isSingleShare && intentReader.type == "text/plain") intentReader
+                    else null
+                }?.let { intentReader ->
+                    intentReader.text?.toString()?.let { url ->
+                        val title = intentReader.subject ?: ""
                         // title is nullable (use empty string if title is null)
                         // url is non nullable
                         Pair(title, url)
                     }
-                }
-                if (receivedData != null && findNavController().currentDestination?.id != R.id.bookmark_edit_fragment) {
-                    val (title, url) = receivedData
-                    findNavController().navigate(actionGlobalBookmarkEditFragment(0L, title, url))
+                }?.also { (title, url) ->
+                    if (findNavController().currentDestination?.id != R.id.bookmark_edit_fragment) {
+                        findNavController().navigate(
+                            actionGlobalBookmarkEditFragment(
+                                0L, title, url
+                            )
+                        )
+                    }
                 }
             }
     }

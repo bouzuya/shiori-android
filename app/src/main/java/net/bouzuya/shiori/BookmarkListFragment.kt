@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ShareCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -67,14 +68,13 @@ class BookmarkListFragment : Fragment() {
                             bookmark.id, null, null
                         )
                     )
-                    BookmarkAction.Share -> startActivity(
-                        Intent.createChooser(
-                            Intent(Intent.ACTION_SEND).also { intent ->
-                                intent.type = "text/plain"
-                                intent.putExtra(Intent.EXTRA_TEXT, bookmark.url)
-                            }, bookmark.url
-                        )
-                    )
+                    BookmarkAction.Share -> activity?.also { activity ->
+                        ShareCompat.IntentBuilder.from(activity)
+                            .setType("text/plain")
+                            .setText(bookmark.url)
+                            .setChooserTitle(bookmark.url)
+                            .startChooser()
+                    }
                 }
             })
         }.root
