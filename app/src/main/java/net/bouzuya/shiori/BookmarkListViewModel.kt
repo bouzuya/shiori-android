@@ -53,9 +53,7 @@ class BookmarkListViewModel(private val _bookmarkRepository: BookmarkRepository)
         val allItemList = _bookmarkRepository.findAll()
         val itemList = _searchQuery.value?.let { query ->
             if (query.isEmpty()) allItemList
-            else allItemList.filter {
-                it.bookmark.name.contains(query)
-            }
+            else allItemList.filter { it.match(query) }
         } ?: allItemList
         _bookmarkWithTagListList.value = itemList
     }
