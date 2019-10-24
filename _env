@@ -10,6 +10,8 @@
 # $ for bash
 # $ export $(cat .env | xargs)
 #
+# (optional) To upload the apk to DeployGate
+DEPLOYGATE_API_TOKEN=
 # `ENCODED_KEY_STORE=$(base64 shiori.jks)`
 ENCODED_KEY_STORE=
 KEY_PASSWORD=

@@ -22,6 +22,14 @@ $ echo $ENCODED_KEY_STORE | base64 --decode > shiori.jks
 $ ./gradlew -PpropertyKeyPassword=$KEY_PASSWORD -PpropertyStorePassword=$STORE_PASSWORD assembleRelease
 ```
 
+## Upload the apk to DeployGate
+
+```
+$ # Set environment variable `DEPLOYGATE_API_TOKEN` (See `_env`)
+$ # build (See "How to build" > "release build" section)
+$ ./gradlew uploadDeployGateRelease
+```
+
 ## Note
 
 - Kotlin

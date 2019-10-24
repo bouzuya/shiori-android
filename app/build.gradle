@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs.kotlin'
+apply plugin: 'deploygate'
 
 android {
     compileSdkVersion 29
@@ -93,4 +94,19 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'com.google.truth:truth:0.44'
     androidTestImplementation 'com.linkedin.dexmaker:dexmaker-mockito-inline:2.25.0'
+}
+
+deploygate {
+    appOwnerName = 'bouzuya'
+    // apiToken // set DEPLOYGATE_API_TOKEN environment variable
+
+    deployments {
+        // ./gradlew uploadDeployGateRelease
+        release {
+            def hash = "git rev-parse --short HEAD".execute([], project.rootDir).in.text.trim()
+            message = "release build ${hash}"
+            skipAssemble = true
+            sourceFile = file("${project.rootDir}/app/build/outputs/apk/release/app-release.apk")
+        }
+    }
 }
