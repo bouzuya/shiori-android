@@ -6,6 +6,22 @@
 
 One of the outputs of the [bouzuya/w010][] project.
 
+## How to build
+
+### debug build
+
+```
+$ ./gradlew assembleDebug
+```
+
+### release build
+
+```
+$ # Set environment variables (See `_env`)
+$ echo $ENCODED_KEY_STORE | base64 --decode > shiori.jks
+$ ./gradlew -PpropertyKeyPassword=$KEY_PASSWORD -PpropertyStorePassword=$STORE_PASSWORD assembleRelease
+```
+
 ## Note
 
 - Kotlin

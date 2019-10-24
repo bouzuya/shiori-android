@@ -31,7 +31,7 @@ android {
         release {
             keyAlias "shiori"
             keyPassword propertyKeyPassword // See gradle.properties
-            storeFile file("${project.rootDir}/bouzuya.jks")
+            storeFile file("${project.rootDir}/shiori.jks")
             storePassword propertyStorePassword // See gradle.properties
         }
     }

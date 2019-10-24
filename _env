@@ -1,0 +1,16 @@
+# Usage:
+#
+# $ cp _env .env
+# $ # update .env
+# $
+# $ # for direnv
+# $ echo 'dotenv' > .envrc
+# $ direnv allow
+# $
+# $ for bash
+# $ export $(cat .env | xargs)
+#
+# `ENCODED_KEY_STORE=$(base64 shiori.jks)`
+ENCODED_KEY_STORE=
+KEY_PASSWORD=
+STORE_PASSWORD=
