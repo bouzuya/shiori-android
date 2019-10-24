@@ -11,6 +11,7 @@ import androidx.core.app.ShareCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -42,6 +43,11 @@ class BookmarkListFragment : Fragment() {
             mainViewModel.editResultEvent.observe(this, EventObserver { isOk ->
                 if (isOk)
                     viewModel.refresh()
+            })
+
+            mainViewModel.searchQuery.observe(this, Observer { query ->
+                if (query != null)
+                    viewModel.search(query)
             })
 
             viewModel.createBookmarkEvent.observe(this, EventObserver {

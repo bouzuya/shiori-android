@@ -59,12 +59,16 @@ class MainActivity : AppCompatActivity() {
                 binding.mainNavigationView.setupWithNavController(findNavController())
 
                 findNavController().addOnDestinationChangedListener { _, destination, _ ->
-                    viewModel.hasSearchIcon = when (destination.id) {
+                    val old = viewModel.isVisibleSearchIcon
+                    val new = when (destination.id) {
                         R.id.bookmark_edit_fragment,
                         R.id.bookmark_list_fragment -> true
                         else -> false
                     }
-                    invalidateOptionsMenu()
+                    if (old != new) {
+                        if (new) viewModel.showSearchIcon() else viewModel.hideSearchIcon()
+                        invalidateOptionsMenu()
+                    }
                 }
 
                 ShareCompat.IntentReader.from(this)?.let { intentReader ->
@@ -90,7 +94,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        if (!viewModel.hasSearchIcon) return true
+        if (!viewModel.isVisibleSearchIcon) return true
         menuInflater.inflate(R.menu.main_toolbar, menu)
         (menu.findItem(R.id.main_toolbar_search)?.actionView as? SearchView)
             ?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -101,6 +105,7 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onQueryTextChange(query: String): Boolean {
                     Timber.d("onQueryTextChange: $query")
+                    viewModel.search(query)
                     return false
                 }
             })

@@ -13,9 +13,25 @@ class MainViewModel(
     private val _editResultEvent = MutableLiveData<Event<Boolean>>()
     val editResultEvent: LiveData<Event<Boolean>> = _editResultEvent
 
-    var hasSearchIcon = false
+    private val _searchQuery = MutableLiveData<String?>()
+    val searchQuery: LiveData<String?> = _searchQuery
+
+    val isVisibleSearchIcon: Boolean
+        get() = _searchQuery.value != null
 
     fun editResult(isOk: Boolean) {
         _editResultEvent.value = Event(isOk)
+    }
+
+    fun hideSearchIcon() {
+        _searchQuery.value = null
+    }
+
+    fun search(query: String) {
+        _searchQuery.value = query
+    }
+
+    fun showSearchIcon() {
+        _searchQuery.value = ""
     }
 }

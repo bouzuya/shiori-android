@@ -8,6 +8,8 @@ import net.bouzuya.shiori.data.BookmarkRepository
 import net.bouzuya.shiori.data.BookmarkWithTagList
 
 class BookmarkListViewModel(private val _bookmarkRepository: BookmarkRepository) : ViewModel() {
+    private val _searchQuery = MutableLiveData<String>()
+    val searchQuery: LiveData<String> = _searchQuery
 
     private val _bookmarkWithTagListList = MutableLiveData<List<BookmarkWithTagList>>()
     val bookmarkList: LiveData<List<Bookmark>> =
@@ -48,6 +50,19 @@ class BookmarkListViewModel(private val _bookmarkRepository: BookmarkRepository)
     }
 
     private suspend fun refreshList() {
-        _bookmarkWithTagListList.value = _bookmarkRepository.findAll()
+        val allItemList = _bookmarkRepository.findAll()
+        val itemList = _searchQuery.value?.let { query ->
+            if (query.isEmpty()) allItemList
+            else allItemList.filter {
+                it.bookmark.name.contains(query)
+            }
+        } ?: allItemList
+        _bookmarkWithTagListList.value = itemList
+    }
+
+    fun search(query: String) {
+        _searchQuery.value = query
+
+        refresh()
     }
 }
