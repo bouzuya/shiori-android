@@ -2,8 +2,13 @@
   <dictionary name="bouzuya">
     <words>
       <w>autofill</w>
+      <w>deploygate</w>
+      <w>direnv</w>
+      <w>dotenv</w>
+      <w>envrc</w>
       <w>shiori</w>
       <w>vert</w>
+      <w>xargs</w>
     </words>
   </dictionary>
 </component>
