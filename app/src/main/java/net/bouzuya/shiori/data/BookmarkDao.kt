@@ -13,7 +13,7 @@ interface BookmarkDao {
     @Query("DELETE FROM bookmarks")
     suspend fun deleteAll()
 
-    @Query("SELECT * FROM bookmarks")
+    @Query("SELECT * FROM bookmarks ORDER BY id DESC")
     suspend fun findAll(): List<Bookmark>
 
     @Query("SELECT * FROM bookmarks WHERE id = :id")
