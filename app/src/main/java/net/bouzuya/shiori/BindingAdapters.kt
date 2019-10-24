@@ -34,13 +34,18 @@ fun RecyclerView.setBookmarkList(
     onClickBookmarkListener: OnClickBookmarkListener?,
     onLongClickBookmarkListener: OnClickBookmarkListener?
 ) {
-    val itemList = bookmarkList ?: emptyList()
-
     class BindingViewHolder(val binding: BookmarkListItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-    adapter = object : RecyclerView.Adapter<BindingViewHolder>() {
+    class BookmarkListAdapter : RecyclerView.Adapter<BindingViewHolder>() {
+        private var _dataSet: List<Bookmark> = emptyList()
+        var dataSet: List<Bookmark>
+            get() = _dataSet
+            set(values) {
+                _dataSet = values
+                notifyDataSetChanged()
+            }
+
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingViewHolder {
             return BindingViewHolder(
                 BookmarkListItemBinding.inflate(
@@ -52,11 +57,11 @@ fun RecyclerView.setBookmarkList(
         }
 
         override fun getItemCount(): Int {
-            return itemList.size
+            return dataSet.size
         }
 
         override fun onBindViewHolder(holder: BindingViewHolder, position: Int) {
-            val bookmark = itemList[position]
+            val bookmark = dataSet[position]
             holder.binding.bookmark = bookmark
             holder.binding.onClickListener = View.OnClickListener {
                 onClickBookmarkListener?.onClick(bookmark)
@@ -84,6 +89,13 @@ fun RecyclerView.setBookmarkList(
             }
         }
     }
+
+    if (adapter == null) {
+        layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        adapter = BookmarkListAdapter()
+    }
+    val itemList = bookmarkList ?: emptyList()
+    (adapter as? BookmarkListAdapter)?.dataSet = itemList
 }
 
 @BindingAdapter("bookmarkEditTagList", "bookmarkEditCheckedTagList", "onClickTagCheckListener")
