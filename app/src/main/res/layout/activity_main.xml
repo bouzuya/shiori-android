@@ -27,6 +27,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:menu="@menu/main_toolbar"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <fragment

@@ -1,8 +1,10 @@
 package net.bouzuya.shiori
 
 import android.os.Bundle
+import android.view.Menu
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModel
@@ -16,6 +18,7 @@ import net.bouzuya.shiori.data.BookmarkDatabase
 import net.bouzuya.shiori.data.BookmarkRepository
 import net.bouzuya.shiori.data.TagRepository
 import net.bouzuya.shiori.databinding.ActivityMainBinding
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
     private val viewModel: MainViewModel by viewModels {
@@ -75,6 +78,23 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main_toolbar, menu)
+        (menu.findItem(R.id.main_toolbar_search)?.actionView as? SearchView)
+            ?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String): Boolean {
+                    Timber.d("onQueryTextSubmit: $query")
+                    return false
+                }
+
+                override fun onQueryTextChange(query: String): Boolean {
+                    Timber.d("onQueryTextChange: $query")
+                    return false
+                }
+            })
+        return true
     }
 
     override fun onSupportNavigateUp(): Boolean {

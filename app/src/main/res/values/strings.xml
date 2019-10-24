@@ -11,6 +11,7 @@
     <string name="common_edit_cancel_label">Cancel</string>
     <string name="common_edit_name_label">Name</string>
     <string name="common_edit_ok_label">OK</string>
+    <string name="main_toolbar_search_label">Search</string>
     <string name="setting_app_version_label">App Version</string>
     <string name="setting_bookmark_count_label">Bookmark Count</string>
     <string name="setting_database_version_label">Database Version</string>
