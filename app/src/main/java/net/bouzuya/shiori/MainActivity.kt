@@ -58,6 +58,15 @@ class MainActivity : AppCompatActivity() {
                 }
                 binding.mainNavigationView.setupWithNavController(findNavController())
 
+                findNavController().addOnDestinationChangedListener { _, destination, _ ->
+                    viewModel.hasSearchIcon = when (destination.id) {
+                        R.id.bookmark_edit_fragment,
+                        R.id.bookmark_list_fragment -> true
+                        else -> false
+                    }
+                    invalidateOptionsMenu()
+                }
+
                 ShareCompat.IntentReader.from(this)?.let { intentReader ->
                     if (intentReader.isSingleShare && intentReader.type == "text/plain") intentReader
                     else null
@@ -81,6 +90,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        if (!viewModel.hasSearchIcon) return true
         menuInflater.inflate(R.menu.main_toolbar, menu)
         (menu.findItem(R.id.main_toolbar_search)?.actionView as? SearchView)
             ?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

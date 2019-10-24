@@ -13,6 +13,8 @@ class MainViewModel(
     private val _editResultEvent = MutableLiveData<Event<Boolean>>()
     val editResultEvent: LiveData<Event<Boolean>> = _editResultEvent
 
+    var hasSearchIcon = false
+
     fun editResult(isOk: Boolean) {
         _editResultEvent.value = Event(isOk)
     }
