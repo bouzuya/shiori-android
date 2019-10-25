@@ -1,9 +1,12 @@
 package net.bouzuya.shiori
 
+import android.graphics.Rect
 import android.view.LayoutInflater
+import android.view.TouchDelegate
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import androidx.core.view.doOnPreDraw
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -137,6 +140,12 @@ fun RecyclerView.setBookmarkEditTagList(
             holder.binding.checked = dataSet.second.contains(tag)
             holder.binding.onClick = View.OnClickListener {
                 onClickTagCheckListener.onClick(tag)
+            }
+            doOnPreDraw {
+                val rect = Rect()
+                holder.binding.root.getDrawingRect(rect)
+                holder.binding.root.touchDelegate =
+                    TouchDelegate(rect, holder.binding.bookmarkEditTagListItemCheckbox)
             }
         }
     }
