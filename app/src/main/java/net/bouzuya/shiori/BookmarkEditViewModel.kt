@@ -27,6 +27,8 @@ class BookmarkEditViewModel(
 
     val urlText = MutableLiveData<String>()
 
+    val commentText = MutableLiveData<String>()
+
     private val _allTagList = MutableLiveData<List<Tag>>()
     val allTagList: LiveData<List<Tag>> = _allTagList
 
@@ -40,10 +42,12 @@ class BookmarkEditViewModel(
                 val bookmark = bookmarkWithTagList.bookmark
                 nameText.value = bookmark.name
                 urlText.value = bookmark.url
+                commentText.value = bookmark.comment
                 _bookmarkTagList.value = bookmarkWithTagList.tagList
             } ?: {
                 nameText.value = _defaultBookmarkName ?: ""
                 urlText.value = _defaultBookmarkUrl ?: ""
+                commentText.value = ""
             }()
         }
     }
@@ -61,34 +65,31 @@ class BookmarkEditViewModel(
     }
 
     fun ok() = viewModelScope.launch {
-        nameText.value?.also { name ->
-            urlText.value?.also { url ->
-                val comment = "" // FIXME: set comment
-                _bookmarkTagList.value?.also { tagList ->
-                    if (_bookmarkId == 0L) {
-                        val createdAt = Instant.now().atZone(ZoneOffset.UTC).toOffsetDateTime()
-                            .format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
-                        val bookmark = Bookmark(0, name, url, comment, createdAt)
-                        _bookmarkRepository.insert(BookmarkWithTagList(bookmark, tagList))
-                    } else {
-                        _bookmarkRepository.findById(_bookmarkId)?.also { bookmarkWithTagList ->
+        val name = nameText.value ?: return@launch
+        val url = urlText.value ?: return@launch
+        val comment = commentText.value ?: return@launch
+        val tagList = _bookmarkTagList.value ?: return@launch
+        if (_bookmarkId == 0L) {
+            val createdAt = Instant.now().atZone(ZoneOffset.UTC).toOffsetDateTime()
+                .format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+            val bookmark = Bookmark(0, name, url, comment, createdAt)
+            _bookmarkRepository.insert(BookmarkWithTagList(bookmark, tagList))
+        } else {
+            _bookmarkRepository.findById(_bookmarkId)?.also { bookmarkWithTagList ->
 
-                            val bookmark = bookmarkWithTagList.bookmark
-                            _bookmarkRepository.update(
-                                BookmarkWithTagList(
-                                    Bookmark(
-                                        bookmark.id,
-                                        name,
-                                        url,
-                                        comment,
-                                        bookmark.createdAt
-                                    ),
-                                    tagList
-                                )
-                            )
-                        }
-                    }
-                }
+                val bookmark = bookmarkWithTagList.bookmark
+                _bookmarkRepository.update(
+                    BookmarkWithTagList(
+                        Bookmark(
+                            bookmark.id,
+                            name,
+                            url,
+                            comment,
+                            bookmark.createdAt
+                        ),
+                        tagList
+                    )
+                )
             }
         }
         _okEvent.value = Event(Unit)
