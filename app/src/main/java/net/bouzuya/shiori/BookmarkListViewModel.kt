@@ -36,6 +36,12 @@ class BookmarkListViewModel(private val _bookmarkRepository: BookmarkRepository)
         _createBookmarkEvent.value = Event(Unit)
     }
 
+    fun delete(bookmark: Bookmark) = viewModelScope.launch {
+        _bookmarkRepository.deleteById(bookmark.id)
+
+        refresh()
+    }
+
     fun longClick(bookmark: Bookmark) {
         // TODO: setting
         handleAction(BookmarkAction.Edit, bookmark)
@@ -49,6 +55,12 @@ class BookmarkListViewModel(private val _bookmarkRepository: BookmarkRepository)
         _bookmarkActionEvent.value = Event(Pair(action, bookmark))
     }
 
+    fun search(query: String) {
+        _searchQuery.value = query
+
+        refresh()
+    }
+
     private suspend fun refreshList() {
         val allItemList = _bookmarkRepository.findAll()
         val itemList = _searchQuery.value?.let { query ->
@@ -56,15 +68,5 @@ class BookmarkListViewModel(private val _bookmarkRepository: BookmarkRepository)
             else allItemList.filter { it.match(query) }
         } ?: allItemList
         _bookmarkWithTagListList.value = itemList
-    }
-
-    fun search(query: String) {
-        _searchQuery.value = query
-
-        refresh()
-    }
-
-    fun delete(bookmark: Bookmark) = viewModelScope.launch {
-        _bookmarkRepository.deleteById(bookmark.id)
     }
 }
