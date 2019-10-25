@@ -17,7 +17,7 @@ abstract class BookmarkDatabase : RoomDatabase() {
     abstract fun tagDao(): TagDao
 
     companion object {
-        const val version = 4
+        const val version = 5
 
         @Volatile
         private var database: BookmarkDatabase? = null
@@ -32,6 +32,7 @@ abstract class BookmarkDatabase : RoomDatabase() {
                     .addMigrations(BookmarkDatabaseMigration1to2())
                     .addMigrations(BookmarkDatabaseMigration2to3())
                     .addMigrations(BookmarkDatabaseMigration3to4())
+                    .addMigrations(BookmarkDatabaseMigration4to5())
                     .build().also { db ->
                         database = db
                     }

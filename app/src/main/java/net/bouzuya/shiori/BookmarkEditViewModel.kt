@@ -63,11 +63,12 @@ class BookmarkEditViewModel(
     fun ok() = viewModelScope.launch {
         nameText.value?.also { name ->
             urlText.value?.also { url ->
+                val comment = "" // FIXME: set comment
                 _bookmarkTagList.value?.also { tagList ->
                     if (_bookmarkId == 0L) {
                         val createdAt = Instant.now().atZone(ZoneOffset.UTC).toOffsetDateTime()
                             .format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
-                        val bookmark = Bookmark(0, name, url, createdAt)
+                        val bookmark = Bookmark(0, name, url, comment, createdAt)
                         _bookmarkRepository.insert(BookmarkWithTagList(bookmark, tagList))
                     } else {
                         _bookmarkRepository.findById(_bookmarkId)?.also { bookmarkWithTagList ->
@@ -79,6 +80,7 @@ class BookmarkEditViewModel(
                                         bookmark.id,
                                         name,
                                         url,
+                                        comment,
                                         bookmark.createdAt
                                     ),
                                     tagList
