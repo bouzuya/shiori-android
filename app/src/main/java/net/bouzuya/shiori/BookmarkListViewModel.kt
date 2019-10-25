@@ -63,4 +63,8 @@ class BookmarkListViewModel(private val _bookmarkRepository: BookmarkRepository)
 
         refresh()
     }
+
+    fun delete(bookmark: Bookmark) = viewModelScope.launch {
+        _bookmarkRepository.deleteById(bookmark.id)
+    }
 }

@@ -81,6 +81,7 @@ class BookmarkListFragment : Fragment() {
                             .setChooserTitle(bookmark.url)
                             .startChooser()
                     }
+                    BookmarkAction.Delete -> viewModel.delete(bookmark)
                 }
             })
         }.root

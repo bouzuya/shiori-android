@@ -12,8 +12,9 @@
     <string name="common_edit_name_label">Name</string>
     <string name="common_edit_ok_label">OK</string>
     <string name="main_toolbar_search_label">Search</string>
-    <string name="menu_bookmark_popup_open_label">Open</string>
+    <string name="menu_bookmark_popup_delete_label">Delete</string>
     <string name="menu_bookmark_popup_edit_label">Edit</string>
+    <string name="menu_bookmark_popup_open_label">Open</string>
     <string name="menu_bookmark_popup_share_label">Share</string>
     <string name="setting_app_version_label">App Version</string>
     <string name="setting_bookmark_count_label">Bookmark Count</string>

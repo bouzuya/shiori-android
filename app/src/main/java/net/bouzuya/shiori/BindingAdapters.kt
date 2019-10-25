@@ -74,6 +74,7 @@ fun RecyclerView.setBookmarkList(
                             R.id.bookmark_edit -> BookmarkAction.Edit
                             R.id.bookmark_open -> BookmarkAction.Open
                             R.id.bookmark_share -> BookmarkAction.Share
+                            R.id.bookmark_delete -> BookmarkAction.Delete
                             else -> null
                         }?.let { action ->
                             onBookmarkActionListener?.onAction(action, bookmark)
