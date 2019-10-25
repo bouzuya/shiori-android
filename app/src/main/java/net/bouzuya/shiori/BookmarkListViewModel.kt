@@ -9,7 +9,6 @@ import net.bouzuya.shiori.data.BookmarkWithTagList
 
 class BookmarkListViewModel(private val _bookmarkRepository: BookmarkRepository) : ViewModel() {
     private val _searchQuery = MutableLiveData<String>()
-    val searchQuery: LiveData<String> = _searchQuery
 
     private val _bookmarkWithTagListList = MutableLiveData<List<BookmarkWithTagList>>()
     val bookmarkList: LiveData<List<Bookmark>> =
