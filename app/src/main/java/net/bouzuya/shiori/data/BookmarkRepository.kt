@@ -11,6 +11,13 @@ class BookmarkRepository(
         _bookmarkDao.deleteAll()
     }
 
+    suspend fun deleteById(id: Long) {
+        _bookmarkDao.findById(id).firstOrNull()?.let { bookmark ->
+            _bookmarkTagJoinDao.deleteForBookmark(bookmark.id)
+            _bookmarkDao.delete(bookmark)
+        }
+    }
+
     // TODO: N+1
     suspend fun findAll(): List<BookmarkWithTagList> =
         _bookmarkDao.findAll().map { bookmark ->

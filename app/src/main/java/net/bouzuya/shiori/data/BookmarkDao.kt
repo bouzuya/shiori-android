@@ -1,14 +1,14 @@
 package net.bouzuya.shiori.data
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
 @Dao
 interface BookmarkDao {
     @Query("SELECT COUNT(*) FROM bookmarks")
     suspend fun countAll(): Int
+
+    @Delete
+    suspend fun delete(bookmark: Bookmark)
 
     @Query("DELETE FROM bookmarks")
     suspend fun deleteAll()
