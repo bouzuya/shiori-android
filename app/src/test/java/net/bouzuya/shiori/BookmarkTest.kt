@@ -12,6 +12,7 @@ class BookmarkTest {
             id,
             "name1",
             "http://example.com/",
+            "comment1",
             "2000-01-02T15:16:17Z"
         )
         Assert.assertEquals(bookmark.id, id)
@@ -24,6 +25,7 @@ class BookmarkTest {
             1L,
             name,
             "http://example.com/",
+            "comment1",
             "2000-01-02T15:16:17Z"
         )
         Assert.assertEquals(bookmark.name, name)
@@ -32,7 +34,7 @@ class BookmarkTest {
     @Test
     fun testUrl() {
         val url = "http://example.com/"
-        val bookmark = Bookmark(1L, "name1", url, "2000-01-02T15:16:17Z")
+        val bookmark = Bookmark(1L, "name1", url, "comment1", "2000-01-02T15:16:17Z")
         Assert.assertEquals(bookmark.url, url)
     }
 
@@ -40,7 +42,7 @@ class BookmarkTest {
     fun testCreatedAt() {
         val createdAt = "2000-01-02T15:16:17Z"
         val bookmark =
-            Bookmark(1L, "name1", "http://example.com/", createdAt)
+            Bookmark(1L, "name1", "http://example.com/", "comment1", createdAt)
         Assert.assertEquals(bookmark.createdAt, createdAt)
     }
 }
