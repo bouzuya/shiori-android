@@ -23,6 +23,8 @@ class TagEditViewModel(
 
     val nameText = MutableLiveData<String>()
 
+    val idText = if (_tagId == 0L) "" else _tagId.toString()
+
     init {
         viewModelScope.launch {
             (if (_tagId == 0L) null else _tagRepository.findById(_tagId))?.let { tag ->

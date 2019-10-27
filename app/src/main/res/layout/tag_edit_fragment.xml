@@ -10,12 +10,27 @@
     </data>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minWidth="300dp"
         android:orientation="vertical"
         android:padding="16dp"
         tools:context=".TagEditFragment">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/tagEditIdEdit"
+            android:text="@string/common_edit_id_label" />
+
+        <TextView
+            android:id="@+id/tagEditIdEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:layout_marginStart="16dp"
+            android:gravity="start|center_vertical"
+            android:text="@{viewModel.idText}"
+            android:textSize="16sp" />
 
         <TextView
             android:layout_width="wrap_content"
