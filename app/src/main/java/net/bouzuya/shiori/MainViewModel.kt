@@ -32,6 +32,6 @@ class MainViewModel(
     }
 
     fun showSearchIcon() {
-        _searchQuery.value = ""
+        _searchQuery.value = _searchQuery.value ?: ""
     }
 }

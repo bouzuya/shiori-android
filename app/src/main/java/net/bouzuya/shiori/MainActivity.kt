@@ -59,16 +59,13 @@ class MainActivity : AppCompatActivity() {
                 binding.mainNavigationView.setupWithNavController(findNavController())
 
                 findNavController().addOnDestinationChangedListener { _, destination, _ ->
-                    val old = viewModel.isVisibleSearchIcon
                     val new = when (destination.id) {
                         R.id.bookmark_edit_fragment,
                         R.id.bookmark_list_fragment -> true
                         else -> false
                     }
-                    if (old != new) {
-                        if (new) viewModel.showSearchIcon() else viewModel.hideSearchIcon()
-                        invalidateOptionsMenu()
-                    }
+                    if (new) viewModel.showSearchIcon() else viewModel.hideSearchIcon()
+                    invalidateOptionsMenu()
                 }
 
                 ShareCompat.IntentReader.from(this)?.let { intentReader ->
@@ -96,19 +93,29 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         if (!viewModel.isVisibleSearchIcon) return true
         menuInflater.inflate(R.menu.main_toolbar, menu)
-        (menu.findItem(R.id.main_toolbar_search)?.actionView as? SearchView)
-            ?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String): Boolean {
-                    Timber.d("onQueryTextSubmit: $query")
-                    return false
-                }
+        menu.findItem(R.id.main_toolbar_search)?.let { menuItem ->
+            (menuItem.actionView as? SearchView)?.let { searchView ->
+                searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                    override fun onQueryTextSubmit(query: String): Boolean {
+                        Timber.d("onQueryTextSubmit: $query")
+                        return false
+                    }
 
-                override fun onQueryTextChange(query: String): Boolean {
-                    Timber.d("onQueryTextChange: $query")
-                    viewModel.search(query)
-                    return false
+                    override fun onQueryTextChange(query: String): Boolean {
+                        Timber.d("onQueryTextChange: $query")
+                        viewModel.search(query)
+                        return false
+                    }
+                })
+                viewModel.searchQuery.value?.let { query ->
+                    if (query.isNotEmpty()) {
+                        menuItem.expandActionView() // reset query = ""
+                        searchView.setQuery(query, true)
+                    }
                 }
-            })
+            }
+        }
+
         return true
     }
 
