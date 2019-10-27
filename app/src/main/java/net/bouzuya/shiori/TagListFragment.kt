@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import net.bouzuya.shiori.TagListFragmentDirections.Companion.actionTagListFragmentToBookmarkListFragment
 import net.bouzuya.shiori.TagListFragmentDirections.Companion.actionTagListFragmentToTagEditFragment
 import net.bouzuya.shiori.databinding.TagListFragmentBinding
 
@@ -44,6 +45,11 @@ class TagListFragment : Fragment() {
 
             viewModel.editTagEvent.observe(this, EventObserver { tag ->
                 findNavController().navigate(actionTagListFragmentToTagEditFragment(tag.id))
+            })
+
+            viewModel.openTagEvent.observe(this, EventObserver { tag ->
+                mainViewModel.search("tag_id:${tag.id}")
+                findNavController().navigate(actionTagListFragmentToBookmarkListFragment())
             })
         }.root
     }

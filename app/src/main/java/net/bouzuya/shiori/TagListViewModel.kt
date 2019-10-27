@@ -15,6 +15,9 @@ class TagListViewModel(private val _tagRepository: TagRepository) : ViewModel() 
     private val _createTagEvent = MutableLiveData<Event<Unit>>()
     val createTagEvent: LiveData<Event<Unit>> = _createTagEvent
 
+    private val _openTagEvent = MutableLiveData<Event<Tag>>()
+    val openTagEvent: LiveData<Event<Tag>> = _openTagEvent
+
     private val _tagList = MutableLiveData<List<Tag>>()
     val tagList: LiveData<List<Tag>> = _tagList
 
@@ -31,8 +34,7 @@ class TagListViewModel(private val _tagRepository: TagRepository) : ViewModel() 
     }
 
     fun open(tag: Tag) {
-        // TODO
-        _editTagEvent.value = Event(tag)
+        _openTagEvent.value = Event(tag)
     }
 
     fun refresh() {

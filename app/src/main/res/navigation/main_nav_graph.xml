@@ -37,6 +37,10 @@
         <action
             android:id="@+id/action_tag_list_fragment_to_tag_edit_fragment"
             app:destination="@id/tag_edit_fragment" />
+        <action
+            android:id="@+id/action_tag_list_fragment_to_bookmark_list_fragment"
+            app:destination="@id/bookmark_list_fragment"
+            app:popUpTo="@+id/bookmark_list_fragment" />
     </fragment>
 
     <dialog
