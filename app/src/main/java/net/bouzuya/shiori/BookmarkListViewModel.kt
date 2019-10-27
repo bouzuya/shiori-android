@@ -2,10 +2,7 @@ package net.bouzuya.shiori
 
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
-import net.bouzuya.shiori.data.Bookmark
-import net.bouzuya.shiori.data.BookmarkAction
-import net.bouzuya.shiori.data.BookmarkRepository
-import net.bouzuya.shiori.data.BookmarkWithTagList
+import net.bouzuya.shiori.data.*
 
 class BookmarkListViewModel(private val _bookmarkRepository: BookmarkRepository) : ViewModel() {
     private val _searchQuery = MutableLiveData<String>()
@@ -62,10 +59,10 @@ class BookmarkListViewModel(private val _bookmarkRepository: BookmarkRepository)
 
     private suspend fun refreshList() {
         val allItemList = _bookmarkRepository.findAll()
-        val itemList = _searchQuery.value?.let { query ->
-            if (query.isEmpty()) allItemList
-            else allItemList.filter { it.match(query) }
-        } ?: allItemList
+        val itemList = _searchQuery.value
+            ?.let { BookmarkQuery(it) }
+            ?.let { query -> allItemList.filter { query.match(it) } }
+            ?: allItemList
         _bookmarkWithTagListList.value = itemList
     }
 }
