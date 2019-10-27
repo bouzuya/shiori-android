@@ -5,9 +5,19 @@ data class BookmarkQuery(private val queryString: String) {
         if (queryString.isEmpty()) emptyList()
         else {
             queryString.split(" ").filter { it.isNotEmpty() }.map { word ->
-                { bookmarkWithTagList: BookmarkWithTagList ->
-                    word.isEmpty()
-                            || bookmarkWithTagList.bookmark.name.contains(word, ignoreCase = true)
+                if (word.startsWith("tag_id:")) {
+                    { bookmarkWithTagList: BookmarkWithTagList ->
+                        val tagId = word.substring("tag_id:".length)
+                        bookmarkWithTagList.tagList.any { tag -> tag.id.toString() == tagId }
+                    }
+                } else {
+                    { bookmarkWithTagList: BookmarkWithTagList ->
+                        word.isEmpty()
+                                || bookmarkWithTagList.bookmark.name.contains(
+                            word,
+                            ignoreCase = true
+                        )
+                    }
                 }
             }
         }
