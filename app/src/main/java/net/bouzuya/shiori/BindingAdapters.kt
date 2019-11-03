@@ -164,11 +164,16 @@ interface OnClickTagListener {
     fun onClick(tag: Tag)
 }
 
-@BindingAdapter("tagList", "onClickTagListener", "onLongClickTagListener")
+interface OnTagActionListener {
+    fun onAction(action: TagAction, tag: Tag)
+}
+
+@BindingAdapter("tagList", "onClickTagListener", "onLongClickTagListener", "onTagActionListener")
 fun RecyclerView.setTagList(
     tagList: List<Tag>?,
     onClickTagListener: OnClickTagListener?,
-    onLongClickTagListener: OnClickTagListener?
+    onLongClickTagListener: OnClickTagListener?,
+    onTagActionListener: OnTagActionListener?
 ) {
     val itemList = tagList ?: emptyList()
 
@@ -200,6 +205,22 @@ fun RecyclerView.setTagList(
             holder.binding.onLongClick = View.OnLongClickListener {
                 onLongClickTagListener?.onClick(tag)
                 true
+            }
+            holder.binding.onClickMenuListener = View.OnClickListener { v ->
+                PopupMenu(context, v).also { popup ->
+                    popup.menuInflater.inflate(R.menu.tag_popup, popup.menu)
+                    popup.setOnMenuItemClickListener { item ->
+                        when (item.itemId) {
+                            R.id.tag_edit -> TagAction.Edit
+                            R.id.tag_open -> TagAction.Open
+                            else -> null
+                        }?.let { action ->
+                            onTagActionListener?.onAction(action, tag)
+                            true
+                        } ?: false
+                    }
+                    popup.show()
+                }
             }
         }
     }

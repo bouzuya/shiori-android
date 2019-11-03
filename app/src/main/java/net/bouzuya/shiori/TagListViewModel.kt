@@ -34,16 +34,16 @@ class TagListViewModel(private val _tagRepository: TagRepository) : ViewModel() 
         handleAction(TagAction.Edit, tag)
     }
 
+    fun handleAction(action: TagAction, tag: Tag) {
+        _tagActionEvent.value = Event(Pair(action, tag))
+    }
+
     fun open(tag: Tag) {
         handleAction(TagAction.Open, tag)
     }
 
     fun refresh() {
         refreshList()
-    }
-
-    private fun handleAction(action: TagAction, tag: Tag) {
-        _tagActionEvent.value = Event(Pair(action, tag))
     }
 
     private fun refreshList() {

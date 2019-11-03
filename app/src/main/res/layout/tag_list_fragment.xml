@@ -35,6 +35,7 @@
                 android:visibility="@{viewModel.tagList.size() == 0 ? View.GONE : View.VISIBLE}"
                 app:onClickTagListener="@{viewModel::open}"
                 app:onLongClickTagListener="@{viewModel::edit}"
+                app:onTagActionListener="@{viewModel::handleAction}"
                 app:tagList="@{viewModel.tagList}"
                 tools:itemCount="3"
                 tools:listitem="@layout/tag_list_item" />
