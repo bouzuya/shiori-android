@@ -43,14 +43,18 @@ class TagListFragment : Fragment() {
                 findNavController().navigate(actionTagListFragmentToTagEditFragment(0))
             })
 
-            viewModel.editTagEvent.observe(this, EventObserver { tag ->
-                findNavController().navigate(actionTagListFragmentToTagEditFragment(tag.id))
+            viewModel.tagActionEvent.observe(this, EventObserver { (action, tag) ->
+                when (action) {
+                    TagAction.Open -> {
+                        mainViewModel.search("tag_id:${tag.id}")
+                        findNavController().navigate(actionTagListFragmentToBookmarkListFragment())
+                    }
+                    TagAction.Edit -> findNavController().navigate(
+                        actionTagListFragmentToTagEditFragment(tag.id)
+                    )
+                }
             })
 
-            viewModel.openTagEvent.observe(this, EventObserver { tag ->
-                mainViewModel.search("tag_id:${tag.id}")
-                findNavController().navigate(actionTagListFragmentToBookmarkListFragment())
-            })
         }.root
     }
 }

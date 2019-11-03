@@ -9,14 +9,11 @@ import net.bouzuya.shiori.data.Tag
 import net.bouzuya.shiori.data.TagRepository
 
 class TagListViewModel(private val _tagRepository: TagRepository) : ViewModel() {
-    private val _editTagEvent = MutableLiveData<Event<Tag>>()
-    val editTagEvent: LiveData<Event<Tag>> = _editTagEvent
-
     private val _createTagEvent = MutableLiveData<Event<Unit>>()
     val createTagEvent: LiveData<Event<Unit>> = _createTagEvent
 
-    private val _openTagEvent = MutableLiveData<Event<Tag>>()
-    val openTagEvent: LiveData<Event<Tag>> = _openTagEvent
+    private val _tagActionEvent = MutableLiveData<Event<Pair<TagAction, Tag>>>()
+    val tagActionEvent: LiveData<Event<Pair<TagAction, Tag>>> = _tagActionEvent
 
     private val _tagList = MutableLiveData<List<Tag>>()
     val tagList: LiveData<List<Tag>> = _tagList
@@ -30,15 +27,19 @@ class TagListViewModel(private val _tagRepository: TagRepository) : ViewModel() 
     }
 
     fun edit(tag: Tag) {
-        _editTagEvent.value = Event(tag)
+        handleAction(TagAction.Edit, tag)
     }
 
     fun open(tag: Tag) {
-        _openTagEvent.value = Event(tag)
+        handleAction(TagAction.Open, tag)
     }
 
     fun refresh() {
         refreshList()
+    }
+
+    private fun handleAction(action: TagAction, tag: Tag) {
+        _tagActionEvent.value = Event(Pair(action, tag))
     }
 
     private fun refreshList() {
