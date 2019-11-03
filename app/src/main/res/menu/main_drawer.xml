@@ -20,5 +20,10 @@
             android:id="@id/setting_fragment"
             android:icon="@drawable/ic_settings_black_24dp"
             android:title="@string/setting_fragment_name" />
+
+        <item
+            android:id="@id/license_fragment"
+            android:icon="@drawable/ic_info_outline_black_24dp"
+            android:title="@string/license_fragment_name" />
     </group>
 </menu>

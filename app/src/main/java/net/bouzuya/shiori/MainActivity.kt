@@ -50,7 +50,8 @@ class MainActivity : AppCompatActivity() {
                             setOf(
                                 R.id.bookmark_list_fragment,
                                 R.id.tag_list_fragment,
-                                R.id.setting_fragment
+                                R.id.setting_fragment,
+                                R.id.license_fragment
                             ),
                             binding.mainDrawerLayout
                         )

@@ -58,4 +58,8 @@
     <action
         android:id="@+id/action_global_bookmark_edit_fragment"
         app:destination="@id/bookmark_edit_fragment" />
+    <fragment
+        android:id="@+id/license_fragment"
+        android:name="net.bouzuya.shiori.LicenseFragment"
+        android:label="@string/license_fragment_name" />
 </navigation>
