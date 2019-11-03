@@ -20,6 +20,14 @@ interface BookmarkTagJoinDao {
 
     @Query(
         """
+           DELETE FROM bookmarks_tags
+           WHERE tag_id = :tagId
+           """
+    )
+    suspend fun deleteForTag(tagId: Long)
+
+    @Query(
+        """
            SELECT tags.id, tags.name, tags.created_at FROM tags
            INNER JOIN bookmarks_tags
            ON tags.id = bookmarks_tags.tag_id

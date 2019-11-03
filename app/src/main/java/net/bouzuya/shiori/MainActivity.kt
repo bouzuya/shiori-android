@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
                 val database = BookmarkDatabase.getDatabase(applicationContext)
                 return MainViewModel(
                     BookmarkRepository(database.bookmarkDao(), database.bookmarkTagJoinDao()),
-                    TagRepository(database.tagDao())
+                    TagRepository(database.bookmarkTagJoinDao(), database.tagDao())
                 ) as T
             }
         }

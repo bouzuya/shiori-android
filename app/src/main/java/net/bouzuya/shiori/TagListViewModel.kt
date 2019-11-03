@@ -26,6 +26,10 @@ class TagListViewModel(private val _tagRepository: TagRepository) : ViewModel() 
         _createTagEvent.value = Event(Unit)
     }
 
+    fun delete(tag: Tag) = viewModelScope.launch {
+        _tagRepository.deleteById(tag.id)
+    }
+
     fun edit(tag: Tag) {
         handleAction(TagAction.Edit, tag)
     }

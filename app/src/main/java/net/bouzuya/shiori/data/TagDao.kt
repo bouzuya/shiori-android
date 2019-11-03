@@ -1,14 +1,14 @@
 package net.bouzuya.shiori.data
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
 @Dao
 interface TagDao {
     @Query("SELECT COUNT(*) FROM tags")
     suspend fun countAll(): Int
+
+    @Delete
+    suspend fun delete(tag: Tag)
 
     @Query("DELETE FROM tags")
     suspend fun deleteAll()
