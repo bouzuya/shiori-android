@@ -19,6 +19,7 @@
     <string name="menu_bookmark_popup_edit_label">Edit</string>
     <string name="menu_bookmark_popup_open_label">Open</string>
     <string name="menu_bookmark_popup_share_label">Share</string>
+    <string name="menu_tag_popup_delete_label">Delete</string>
     <string name="menu_tag_popup_edit_label">Edit</string>
     <string name="menu_tag_popup_open_label">Open</string>
     <string name="setting_app_version_label">App Version</string>

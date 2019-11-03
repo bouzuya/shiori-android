@@ -213,6 +213,7 @@ fun RecyclerView.setTagList(
                         when (item.itemId) {
                             R.id.tag_edit -> TagAction.Edit
                             R.id.tag_open -> TagAction.Open
+                            R.id.tag_delete -> TagAction.Delete
                             else -> null
                         }?.let { action ->
                             onTagActionListener?.onAction(action, tag)

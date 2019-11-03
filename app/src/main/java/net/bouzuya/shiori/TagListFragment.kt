@@ -52,6 +52,7 @@ class TagListFragment : Fragment() {
                     TagAction.Edit -> findNavController().navigate(
                         actionTagListFragmentToTagEditFragment(tag.id)
                     )
+                    TagAction.Delete -> viewModel.delete(tag)
                 }
             })
 
