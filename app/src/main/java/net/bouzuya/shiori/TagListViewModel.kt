@@ -28,6 +28,8 @@ class TagListViewModel(private val _tagRepository: TagRepository) : ViewModel() 
 
     fun delete(tag: Tag) = viewModelScope.launch {
         _tagRepository.deleteById(tag.id)
+
+        refresh()
     }
 
     fun edit(tag: Tag) {
