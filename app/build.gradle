@@ -64,9 +64,6 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$androidx_navigation_version"
     implementation "androidx.room:room-ktx:$androidx_room_version"
     implementation "androidx.room:room-runtime:$androidx_room_version"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0'
     implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1'
     implementation 'com.jakewharton.timber:timber:4.7.1'
     kapt "androidx.room:room-compiler:$androidx_room_version"
