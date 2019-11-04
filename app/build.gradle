@@ -8,7 +8,6 @@ apply plugin: 'com.cookpad.android.licensetools'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "net.bouzuya.shiori"
         minSdkVersion 23
