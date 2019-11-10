@@ -27,8 +27,7 @@ class BookmarkListViewModel(
     }
 
     fun click(bookmark: Bookmark) {
-        // TODO: setting
-        handleAction(BookmarkAction.Open, bookmark)
+        handleAction(_preferenceRepository.getBookmarkTapAction(), bookmark)
     }
 
     fun create() {
@@ -42,8 +41,7 @@ class BookmarkListViewModel(
     }
 
     fun longClick(bookmark: Bookmark) {
-        // TODO: setting
-        handleAction(BookmarkAction.Edit, bookmark)
+        handleAction(_preferenceRepository.getBookmarkLongTapAction(), bookmark)
     }
 
     fun refresh() = viewModelScope.launch {
