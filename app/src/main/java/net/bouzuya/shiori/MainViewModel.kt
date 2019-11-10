@@ -4,10 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import net.bouzuya.shiori.data.BookmarkRepository
+import net.bouzuya.shiori.data.PreferenceRepository
 import net.bouzuya.shiori.data.TagRepository
 
 class MainViewModel(
     val bookmarkRepository: BookmarkRepository,
+    val preferenceRepository: PreferenceRepository,
     val tagRepository: TagRepository
 ) : ViewModel() {
     private val _editResultEvent = MutableLiveData<Event<Boolean>>()

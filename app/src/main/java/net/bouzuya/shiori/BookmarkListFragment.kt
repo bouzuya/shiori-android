@@ -26,7 +26,10 @@ class BookmarkListFragment : Fragment() {
         object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return BookmarkListViewModel(mainViewModel.bookmarkRepository) as T
+                return BookmarkListViewModel(
+                    mainViewModel.bookmarkRepository,
+                    mainViewModel.preferenceRepository
+                ) as T
             }
         }
     }

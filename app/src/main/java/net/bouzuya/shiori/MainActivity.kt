@@ -16,6 +16,7 @@ import androidx.navigation.ui.setupWithNavController
 import net.bouzuya.shiori.MainNavGraphDirections.Companion.actionGlobalBookmarkEditFragment
 import net.bouzuya.shiori.data.BookmarkDatabase
 import net.bouzuya.shiori.data.BookmarkRepository
+import net.bouzuya.shiori.data.PreferenceRepository
 import net.bouzuya.shiori.data.TagRepository
 import net.bouzuya.shiori.databinding.ActivityMainBinding
 import timber.log.Timber
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity() {
                 val database = BookmarkDatabase.getDatabase(applicationContext)
                 return MainViewModel(
                     BookmarkRepository(database.bookmarkDao(), database.bookmarkTagJoinDao()),
+                    PreferenceRepository(this@MainActivity),
                     TagRepository(database.bookmarkTagJoinDao(), database.tagDao())
                 ) as T
             }

@@ -4,7 +4,10 @@ import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import net.bouzuya.shiori.data.*
 
-class BookmarkListViewModel(private val _bookmarkRepository: BookmarkRepository) : ViewModel() {
+class BookmarkListViewModel(
+    private val _bookmarkRepository: BookmarkRepository,
+    private val _preferenceRepository: PreferenceRepository
+) : ViewModel() {
     private val _searchQuery = MutableLiveData<String>()
 
     private val _bookmarkWithTagListList = MutableLiveData<List<BookmarkWithTagList>>()
