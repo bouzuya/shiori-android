@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory android:title="Tap Action">
+
+        <ListPreference
+            android:defaultValue="Open"
+            android:entries="@array/bookmark_action"
+            android:entryValues="@array/bookmark_action"
+            android:key="bookmark_tap_action"
+            android:title="Bookmark Tap Action"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            android:defaultValue="Edit"
+            android:entries="@array/bookmark_action"
+            android:entryValues="@array/bookmark_action"
+            android:key="bookmark_long_tap_action"
+            android:title="Bookmark Long Tap Action"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Information">
+
+        <Preference
+            android:key="readonly_app_version"
+            android:selectable="false"
+            android:title="@string/setting_app_version_label" />
+
+        <Preference
+            android:key="readonly_database_version"
+            android:selectable="false"
+            android:title="@string/setting_database_version_label" />
+
+        <Preference
+            android:key="readonly_bookmark_count"
+            android:selectable="false"
+            android:title="@string/setting_bookmark_count_label" />
+
+        <Preference
+            android:key="readonly_tag_count"
+            android:selectable="false"
+            android:title="@string/setting_tag_count_label" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Danger Zone">
+
+        <Preference
+            android:key="readonly_delete_all"
+            android:title="@string/setting_delete_all_label" />
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -1,19 +1,16 @@
 package net.bouzuya.shiori
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.preference.Preference
+import androidx.preference.PreferenceFragmentCompat
 import net.bouzuya.shiori.data.BookmarkDatabase
-import net.bouzuya.shiori.databinding.SettingFragmentBinding
 
-
-class SettingFragment : Fragment() {
+class SettingFragment : PreferenceFragmentCompat() {
     private val mainViewModel: MainViewModel by activityViewModels()
     private val viewModel: SettingViewModel by viewModels {
         // FIXME
@@ -30,18 +27,34 @@ class SettingFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return SettingFragmentBinding.inflate(inflater, container, false).also { binding ->
-            binding.lifecycleOwner = this
-            binding.viewModel = viewModel
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        setPreferencesFromResource(R.xml.preferences, rootKey)
 
-            viewModel.deleteCompletedEvent.observe(this, EventObserver {
-                // workaround for reloading bookmark / tag list view
-                mainViewModel.editResult(true)
-            })
-        }.root
+        // TODO: data binding
+
+        findAndUpdateSummary("readonly_app_version", viewModel.appVersion)
+        findAndUpdateSummary("readonly_database_version", viewModel.databaseVersion)
+        viewModel.bookmarkCount.observe(this, Observer { count ->
+            if (count != null)
+                findAndUpdateSummary("readonly_bookmark_count", count.toString())
+        })
+        viewModel.tagCount.observe(this, Observer { count ->
+            if (count != null)
+                findAndUpdateSummary("readonly_tag_count", count.toString())
+        })
+
+        findPreference<Preference>("readonly_delete_all")?.setOnPreferenceClickListener {
+            viewModel.deleteAll()
+            true
+        }
+
+        viewModel.deleteCompletedEvent.observe(this, EventObserver {
+            // workaround for reloading bookmark / tag list view
+            mainViewModel.editResult(true)
+        })
+    }
+
+    private fun findAndUpdateSummary(key: String, summary: String) {
+        findPreference<Preference>(key)?.summary = summary
     }
 }

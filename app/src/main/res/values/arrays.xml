@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="bookmark_action">
+        <item>Open</item>
+        <item>Edit</item>
+        <item>Share</item>
+        <item>Delete</item>
+    </string-array>
+</resources>
